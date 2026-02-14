@@ -3,131 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية سجى غازي | المنهج التأسيسي</title>
+    <title>أكاديمية سجى غازي | المنظومة التدريبية المتكاملة</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #1a472a; --gold: #c5a059; --bg: #fdfdfd; }
+        :root { --primary: #1a472a; --gold: #c5a059; --bg: #f8f9fa; --white: #ffffff; }
         body { font-family: 'Tajawal', sans-serif; margin: 0; background: var(--bg); color: var(--primary); }
         
-        .page { display: none; padding: 20px; min-height: 100vh; }
-        .active { display: block !important; }
+        /* الهيكل العام */
+        .app-wrapper { display: flex; min-height: 100vh; }
+        .sidebar { width: 300px; background: var(--primary); color: var(--gold); padding: 20px; box-shadow: 2px 0 10px rgba(0,0,0,0.1); }
+        .main-content { flex: 1; padding: 40px; }
 
-        /* الهيرو */
-        .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1500') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--gold); text-align: center; }
+        /* التصنيفات */
+        .level-btn { width: 100%; padding: 15px; margin-bottom: 10px; border: 1px solid var(--gold); background: none; color: white; cursor: pointer; border-radius: 8px; text-align: right; font-weight: bold; transition: 0.3s; }
+        .level-btn:hover, .level-btn.active { background: var(--gold); color: var(--primary); }
+
+        /* منطقة التمارين */
+        .exercise-card { background: var(--white); border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 20px; border-right: 10px solid var(--gold); }
+        .exercise-title { font-family: 'Amiri', serif; font-size: 2rem; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         
-        /* خريطة المنهج */
-        .curriculum-grid { max-width: 1000px; margin: 40px auto; display: grid; gap: 20px; }
-        .unit-card { background: white; padding: 25px; border-radius: 15px; border-right: 8px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
-        .unit-card:hover { transform: scale(1.02); background: #fffcf5; }
+        .word-item { display: inline-block; background: #f0f0f0; padding: 15px 30px; margin: 10px; border-radius: 10px; cursor: pointer; font-size: 1.4rem; font-weight: bold; transition: 0.2s; }
+        .word-item:hover { background: var(--primary); color: var(--gold); }
 
-        /* منطقة التعلم التفاعلية */
-        .learning-zone { max-width: 900px; margin: auto; background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .word-bubble { display: inline-block; background: var(--primary); color: var(--gold); padding: 20px 40px; border-radius: 50px; font-size: 3rem; font-family: 'Amiri', serif; margin: 20px; cursor: pointer; transition: 0.3s; }
-        .word-bubble:hover { transform: scale(1.1); background: var(--gold); color: var(--primary); }
-
-        .ai-mentor { background: #e8f5e9; border: 1px solid #4caf50; padding: 20px; border-radius: 12px; margin-bottom: 30px; line-height: 1.8; }
-        .nav-btn { background: var(--primary); color: var(--gold); padding: 10px 25px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .ai-feedback-box { background: #e8f5e9; border: 1px solid #4caf50; padding: 20px; border-radius: 10px; margin-top: 20px; font-weight: 500; }
+        
+        header { background: var(--white); padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center; }
+        .badge { background: var(--gold); color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; margin-bottom: 10px; display: inline-block; }
     </style>
 </head>
 <body>
 
-    <section id="heroPage" class="page active">
-        <div class="hero">
-            <h1 style="font-family:'Amiri'; font-size: 4rem;">أكاديمية سجى غازي</h1>
-            <p style="color: white; font-size: 1.4rem;">أهلاً بك في المستوى المبتدئ: من الحرف إلى الجملة</p>
-            <button class="nav-btn" style="font-size: 1.5rem; padding: 15px 50px;" onclick="showPage('curriculumPage')">ابدأ المحتوى التدريبي</button>
-        </div>
-    </section>
+<header>
+    <h1>أكاديمية سجى غازي التعليمية 🎓</h1>
+    <p>بوابة الإتقان اللغوي الشاملة (نحو - صرف - إملاء - بلاغة)</p>
+</header>
 
-    <section id="curriculumPage" class="page">
-        <h2 style="text-align: center; margin-bottom: 40px;">منهج المستوى المبتدئ المعتمد</h2>
-        <div class="curriculum-grid">
-            <div class="unit-card" onclick="loadLesson(1)">
-                <h3>الوحدة الأولى: مخارج الحروف والحركات</h3>
-                <p>إتقان نطق الحروف العربية بالفتحة والضمة والكسرة مع الذكاء الاصطناعي.</p>
-            </div>
-            <div class="unit-card" onclick="loadLesson(2)">
-                <h3>الوحدة الثانية: التنوين والمدود</h3>
-                <p>التمييز السمعي بين النون الساكنة والتنوين وقواعد المد الثلاثة.</p>
-            </div>
-            <div class="unit-card" onclick="loadLesson(3)">
-                <h3>الوحدة الثالثة: بناء الجملة الاسمية</h3>
-                <p>تكوين أول جملة صحيحة (مبتدأ وخبر) مع ضبط أواخر الكلمات.</p>
-            </div>
-        </div>
-    </section>
+<div class="app-wrapper">
+    <div class="sidebar">
+        <h3>المسارات التعليمية</h3>
+        <button class="level-btn active" onclick="loadModule('beginner')">المستوى المبتدئ (التأسيس)</button>
+        <button class="level-btn" onclick="loadModule('intermediate')">المستوى المتوسط (القواعد)</button>
+        <button class="level-btn" onclick="loadModule('advanced')">المستوى المتقدم (الفصاحة)</button>
+        <hr style="border-color: rgba(255,255,255,0.1);">
+        <p style="font-size: 0.8rem; color: #aaa;">نظام تصحيح ذكي مفعّل 🟢</p>
+    </div>
 
-    <section id="lessonPage" class="page">
-        <div class="learning-zone">
-            <button class="nav-btn" onclick="showPage('curriculumPage')">← العودة للمنهج</button>
-            <div id="lessonContent">
+    <div class="main-content" id="contentArea">
+        </div>
+</div>
+
+<script>
+    const trainingData = {
+        beginner: [
+            { title: "مختبر مخارج الحروف", type: "تأسيس", task: "اضغط لتسمع المخرج الصحيح للحرف مع الحركة", content: ["أَ - أِ - أُ", "بَ - بِ - بُ", "تَ - تِ - تُ", "ثَ - ثِ - ثُ"], explanation: "نركز هنا على نطق الهمزة من أقصى الحلق، والباء من الشفتين." },
+            { title: "المدود والتمكين", type: "تأسيس", task: "التفرقة بين الحركات القصيرة والمدود", content: ["قَالَ - قَلَ", "يَقُولُ - يَقُلْ", "قِيلَ - قِلْ"], explanation: "المد هو إطالة الصوت بحرف من حروف المد الثلاثة." },
+            { title: "تكوين الجملة الاسمية", type: "نحو", task: "تعرف على ركني الجملة", content: ["الشمسُ ساطعةٌ", "الحديقةُ واسعةٌ", "العلمُ نافعٌ"], explanation: "كل جملة تبدأ باسم هي جملة اسمية، الاسم الأول مبتدأ والثاني خبر." }
+        ],
+        intermediate: [
+            { title: "الجملة الفعلية وأركانها", type: "نحو", task: "تحليل الفعل والفاعل", content: ["كتَبَ التلميذُ", "قرأَت البنتُ", "نجحَ المجتهدُ"], explanation: "الجملة الفعلية تبدأ بفعل، والاسم الذي قام بالفعل يسمى فاعلاً ويكون مرفوعاً." },
+            { title: "المفاعيل (المفعول به)", type: "نحو", task: "تحديد وقع عليه فعل الفاعل", content: ["شربَ الطفلُ اللبنَ", "كتبَ الشاعرُ قصيدةً"], explanation: "المفعول به هو اسم منصوب يدل على من وقع عليه الفعل." },
+            { title: "قواعد الهمزات", type: "إملاء", task: "رسم الهمزة المتوسطة", content: ["سَأَلَ", "بِئْر", "مُؤْمِن"], explanation: "تعتمد قوة الهمزة على حركتها وحركة ما قبلها (الكسرة هي الأقوى)." }
+        ],
+        advanced: [
+            { title: "فنون البلاغة (التشبيه)", type: "بلاغة", task: "تحليل أركان التشبيه", content: ["العلمُ كالنورِ في الهداية", "الرجلُ كالأسدِ في الشجاعة"], explanation: "التشبيه يربط بين شيئين في صفة مشتركة باستخدام أداة تشبيه." },
+            { title: "الأساليب الإنشائية", type: "بلاغة", task: "التمييز بين الأمر والنهي والاستفهام", content: ["اقرأْ باسم ربك", "لا تنهَ عن خلقٍ وتأتيَ مثله"], explanation: "الأسلوب الإنشائي لا يحتمل الصدق أو الكذب ويهدف لإثارة ذهن المتلقي." },
+            { title: "التذوق الأدبي", type: "أدب", task: "نطق الشعر الجاهلي", content: ["قِفَا نَبْكِ مِنْ ذِكْرَى حَبِيبٍ ومَنْزِلِ"], explanation: "تدريب على الإلقاء الشعري وضبط الوقف والوصل." }
+        ]
+    };
+
+    function loadModule(level) {
+        // تحديث الأزرار
+        document.querySelectorAll('.level-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        const contentArea = document.getElementById('contentArea');
+        contentArea.innerHTML = ''; // تفريغ المحتوى
+
+        trainingData[level].forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'exercise-card';
+            card.innerHTML = `
+                <span class="badge">${item.type}</span>
+                <div class="exercise-title">${item.title}</div>
+                <p><strong>التمرين:</strong> ${item.task}</p>
+                <div class="word-grid">
+                    ${item.content.map(word => `<div class="word-item" onclick="speakAction('${word}', '${item.explanation}')">${word} 🔊</div>`).join('')}
                 </div>
-        </div>
-    </section>
-
-    <script>
-        function showPage(id) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            window.scrollTo(0,0);
-        }
-
-        const lessons = {
-            1: {
-                title: "مخارج الحروف والحركات",
-                ai: "مرحباً بك في الوحدة الأولى. ردد معي الحروف بحركاتها الثلاث. اضغط على الحرف لتسمع مخرجه الصحيح.",
-                content: `
-                    <div style="text-align:center">
-                        <div class="word-bubble" onclick="playVoice('أَ - بَ - تَ', 'فتحة')">أَ بَ تَ 🔊</div>
-                        <div class="word-bubble" onclick="playVoice('إِ - بِ - تِ', 'كسرة')">إِ بِ تِ 🔊</div>
-                        <div class="word-bubble" onclick="playVoice('أُ - بُ - تُ', 'ضمة')">أُ بُ تُ 🔊</div>
-                    </div>`
-            },
-            2: {
-                title: "التنوين والمدود",
-                ai: "في هذه الوحدة نتعلم إطالة الصوت بالحرف (المد) وصوت الجرس في نهاية الكلمة (التنوين).",
-                content: `
-                    <div style="text-align:center">
-                        <div class="word-bubble" onclick="playVoice('بَا - بُو - بِي', 'مد')">بَا بُو بِي 🔊</div>
-                        <div class="word-bubble" onclick="playVoice('بٌ - بٍ - بً', 'تنوين')">بٌ بٍ بً 🔊</div>
-                    </div>`
-            },
-            3: {
-                title: "بناء الجملة الاسمية",
-                ai: "الآن نصنع جملة! الجملة الاسمية تبدأ باسم مرفوع يسمى (مبتدأ) ويليه ما يكمل معناه ويسمى (خبر).",
-                content: `
-                    <div style="text-align:center">
-                        <div class="word-bubble" onclick="playVoice('القلمُ جديدٌ', 'جملة اسمية: القلم مبتدأ وجديد خبر')">القلمُ جديدٌ 🔊</div>
-                        <div class="word-bubble" onclick="playVoice('السماءُ صافيةٌ', 'جملة اسمية: السماء مبتدأ وصافية خبر')">السماءُ صافيةٌ 🔊</div>
-                    </div>`
-            }
-        };
-
-        function loadLesson(id) {
-            const lesson = lessons[id];
-            const html = `
-                <h2 style="color:var(--gold); margin-top:20px;">${lesson.title}</h2>
-                <div class="ai-mentor">🤖 <strong>المعلم الذكي:</strong> ${lesson.ai}</div>
-                ${lesson.content}
-                <div style="margin-top:30px; color:#666">ملاحظة: اضغط على الفقاعة لتسمع نطق المعلم وتوجيهه النحوي.</div>
+                <div class="ai-feedback-box">🤖 <strong>توجيه المعلم:</strong> ${item.explanation}</div>
             `;
-            document.getElementById('lessonContent').innerHTML = html;
-            showPage('lessonPage');
-            speak(lesson.ai);
-        }
+            contentArea.appendChild(card);
+        });
+        
+        speakAction("تم تحميل دروس المستوى " + (level === 'beginner' ? 'المبتدئ' : level === 'intermediate' ? 'المتوسط' : 'المتقدم'), "");
+    }
 
-        function playVoice(text, explain) {
-            speak(text + ". " + explain);
-        }
+    function speakAction(text, explain) {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text + ". " + explain);
+        utter.lang = 'ar-SA';
+        utter.rate = 0.85;
+        utter.pitch = 0.9;
+        window.speechSynthesis.speak(utter);
+    }
 
-        function speak(text) {
-            window.speechSynthesis.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'ar-SA';
-            utter.rate = 0.8;
-            utter.pitch = 0.95; // نبرة بشرية وقورة
-            window.speechSynthesis.speak(utter);
-        }
-    </script>
+    // تحميل المستوى المبتدئ افتراضياً عند الفتح
+    window.onload = () => loadModule('beginner');
+</script>
+
 </body>
 </html>
