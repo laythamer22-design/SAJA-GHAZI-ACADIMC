@@ -3,191 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية سجى غازي - المنصة المتكاملة</title>
+    <title>أكاديمية سجى غازي | صرح اللغة العربية الذكي</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #1a472a;
-            --secondary-color: #d4af37;
-            --bg-light: #f4f7f6;
-            --text-dark: #333;
+            --primary: #1a472a; /* أخضر ملكي */
+            --gold: #d4af37;    /* ذهبي */
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.95);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-light);
+            font-family: 'Tajawal', sans-serif;
             margin: 0;
-            color: var(--text-dark);
+            background: #f9f9f9;
+            color: var(--primary);
+            overflow-x: hidden;
         }
 
-        header {
-            background: var(--primary-color);
-            color: var(--secondary-color);
-            padding: 20px;
+        /* --- واجهة الترحيب الاحترافية --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(26, 71, 42, 0.9), rgba(26, 71, 42, 0.8)), 
+                        url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            color: var(--gold);
+            padding: 20px;
         }
 
-        .container { max-width: 1200px; margin: auto; padding: 20px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .hero p { font-size: 1.5rem; color: white; max-width: 700px; }
 
-        /* بوابات النظام */
-        .portal-section { display: none; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .portal-active { display: block; animation: fadeIn 0.5s; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* تصميم الأزرار */
-        .btn {
-            background: var(--secondary-color);
-            color: var(--primary-color);
+        .btn-start {
+            background: var(--gold);
+            color: var(--primary);
+            padding: 15px 40px;
+            font-size: 1.2rem;
             border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
+            border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
+            margin-top: 30px;
             transition: 0.3s;
-            margin: 5px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
-        .btn:hover { background: #c19b2e; transform: translateY(-2px); }
+        .btn-start:hover { transform: scale(1.05); background: white; }
 
-        /* منطقة الدروس التفاعلية */
-        .word-box {
-            font-size: 2.5rem;
+        /* --- نظام التنقل بين المراحل --- */
+        .page { display: none; min-height: 100vh; padding: 40px 20px; }
+        .active { display: block; animation: slideIn 0.6s ease-out; }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- مرحلة التسجيل والتقديم --- */
+        .setup-card {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
-            padding: 50px;
-            border: 2px dashed var(--secondary-color);
-            margin: 20px 0;
-            border-radius: 15px;
+        }
+
+        .input-group { margin-bottom: 20px; text-align: right; }
+        input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+
+        /* --- لوحة الدروس (Dashboard) --- */
+        .dashboard-grid { display: grid; grid-template-columns: 300px 1fr; gap: 20px; max-width: 1200px; margin: auto; }
+        .sidebar { background: var(--primary); color: white; padding: 20px; border-radius: 15px; }
+        .content-area { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+        .course-card {
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: 0.3s;
             cursor: pointer;
         }
+        .course-card:hover { border-color: var(--gold); background: #fffdf5; }
 
-        .ai-tutor {
-            background: #e8f5e9;
-            border-right: 5px solid #4caf50;
-            padding: 15px;
-            margin-top: 20px;
-        }
-
-        /* لوحة التحكم للمدير */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
-        th { background-color: var(--primary-color); color: white; }
-
-        .nav-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .ai-status { background: #e8f5e9; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>أكاديمية سجى غازي للغة العربية 🎓</h1>
-    <p>منصة التعليم الذكي - صوت، نص، وذكاء اصطناعي</p>
-</header>
-
-<div class="container">
-    <div class="nav-tabs">
-        <button class="btn" onclick="showPortal('studentPortal')">بوابة الطالب</button>
-        <button class="btn" onclick="showPortal('adminPortal')">بوابة المدير (التقارير)</button>
-    </div>
-
-    <section id="studentPortal" class="portal-section portal-active">
-        <h2>المستوى المبتدئ: الجملة الاسمية</h2>
-        <div class="ai-tutor">
-            🤖 <strong>المعلم الذكي:</strong> "أهلاً بك يا بطل! اضغط على الكلمات لتسمع النطق الصحيح وتتعلم الإعراب."
-        </div>
-        
-        <div class="word-box" onclick="speak('الشجرةُ مثمرةٌ')">
-            الشجرةُ مثمرةٌ 🔊
-        </div>
-
-        <div style="text-align: center;">
-            <p>تحدي اليوم: اسحب المبتدأ وضعه في الميزان</p>
-            <button class="btn" onclick="checkAnswer()">تقديم الإجابة</button>
+    <section id="heroPage" class="page active">
+        <div class="hero">
+            <h1>أكاديمية سجى غازي</h1>
+            <p>مستقبلك في إتقان اللغة العربية يبدأ هنا مع أقوى تقنيات الذكاء الاصطناعي العالمية</p>
+            <button class="btn-start" onclick="goToPage('registerPage')">ابدأ رحلة التعلم الآن</button>
         </div>
     </section>
 
-    <section id="adminPortal" class="portal-section">
-        <h2>لوحة إدارة الأكاديمية (المدير)</h2>
-        <div class="ai-tutor">
-            📊 <strong>ملخص الذكاء الاصطناعي اليومي:</strong> "تم تحقيق نسبة إتقان 92% في وحدة الجملة الاسمية اليوم."
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>المتدرب</th>
-                    <th>المستوى</th>
-                    <th>التقدم</th>
-                    <th>التقرير</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>أحمد علي</td>
-                    <td>مبتدئ</td>
-                    <td>85%</td>
-                    <td><button class="btn" onclick="generatePDF('أحمد علي', 'مبتدئ')">تحميل الشهادة</button></td>
-                </tr>
-                <tr>
-                    <td>سارة خالد</td>
-                    <td>متوسط</td>
-                    <td>40%</td>
-                    <td><button class="btn">تقرير الأداء</button></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div style="margin-top: 30px;">
-            <h3>إرسال تقارير دورية</h3>
-            <button class="btn" onclick="alert('تم إرسال التقرير اليومي لبريدك الشخصي')">إرسال تقرير يومي الآن</button>
-            <button class="btn" onclick="alert('جاري تجهيز التقرير الأسبوعي الشامل...')">تقرير أسبوعي</button>
+    <section id="registerPage" class="page">
+        <div class="setup-card">
+            <h2 style="color: var(--primary)">إنشاء حساب متدرب جديد</h2>
+            <p>انضم إلى جيل جديد من متعلمي العربية</p>
+            <div class="input-group">
+                <label>الاسم الكامل</label>
+                <input type="text" id="userName" placeholder="أدخل اسمك الثلاثي">
+            </div>
+            <div class="input-group">
+                <label>المستوى المستهدف</label>
+                <select style="width:100%; padding:12px; border-radius:8px;">
+                    <option>مبتدئ (تأسيس)</option>
+                    <option>متوسط (قواعد وإعراب)</option>
+                    <option>متقدم (بلاغة وأدب)</option>
+                </select>
+            </div>
+            <button class="btn-start" onclick="completeRegistration()">تأكيد التسجيل والدخول للكورسات</button>
         </div>
     </section>
-</div>
 
-<script>
-    // 1. نظام النطق الصوتي لكل كلمة
-    function speak(text) {
-        const msg = new SpeechSynthesisUtterance(text);
-        msg.lang = 'ar-SA';
-        msg.rate = 0.8;
-        msg.pitch = 1;
-        window.speechSynthesis.speak(msg);
-    }
-
-    // 2. نظام التنقل بين البوابات
-    function showPortal(portalId) {
-        document.querySelectorAll('.portal-section').forEach(section => {
-            section.classList.remove('portal-active');
-        });
-        document.getElementById(portalId).classList.add('portal-active');
-    }
-
-    // 3. محرك توليد الشهادات (PDF)
-    function generatePDF(name, level) {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        
-        doc.setFontSize(22);
-        doc.text("Saja Ghazi Academy", 105, 40, { align: "center" });
-        doc.text("Certificate of Completion", 105, 60, { align: "center" });
-        
-        doc.setFontSize(16);
-        doc.text(`This is to certify that: ${name}`, 105, 100, { align: "center" });
-        doc.text(`Has mastered the level: ${level}`, 105, 120, { align: "center" });
-        
-        doc.text("Verified by AI Mentor", 105, 160, { align: "center" });
-        
-        doc.save(`Certificate_${name}.pdf`);
-        speak("تهانينا! تم إصدار شهادتك بنجاح");
-    }
-
-    // 4. منطق بسيط للألعاب
-    function checkAnswer() {
-        speak("إجابة صحيحة! المبتدأ هو الشجرةُ وهي مرفوعة بالضمة");
-        alert("أحسنت! الذكاء الاصطناعي سجل تقدمك بنسبة +5%");
-    }
-</script>
-
-</body>
-</html>
+    <section id="dashboardPage" class="page">
+        <div class="container">
+            <h2 style="text-align:center; color: var(--primary)">مرحباً بك في لوحتك التعليمية</h2>
+            <div class="dashboard-grid">
+                <div class="sidebar">
+                    <h3>ملف المتدرب</h3>
+                    <p id="displayUser">الاسم: جاري التحميل...</p>
+                    <hr>
+                    <div class="ai-status">🤖 البوت: "أنا جاهز لمساعدتك اليوم في فهم الجملة الاسمية."</div>
+                    <button class="btn" style="width:100%; color: var(--gold); border: 1px solid var(--gold); background:none;" onclick="goToPage('heroPage')">تسجيل الخروج</button>
+                </div>
+                <div class="content-area">
+                    <h3>المسارات المتاحة لك:</h3>
+                    <div class="course-card" onclick="startLesson('الجملة الاسمية')">
+                        <h4>وحدة الجملة الاسمية (صوت + تفاعل)</h4>
+                        <p>تعلم ركني الجملة مع محاكاة ذكية للنطق الصحيح.</p>
+                        <small style="color: var(--gold)">الحالة: متاح الآن</small>
