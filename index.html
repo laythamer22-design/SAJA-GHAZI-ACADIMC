@@ -3,164 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية سجى غازي | المنهاج العالمي للغة العربية</title>
+    <title>أكاديمية سجى غازي | الدورة التأسيسية المكثفة</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #0a2616; --gold: #c5a059; --accent: #d4af37; --bg: #f9fbf9; --text: #2c3e50; }
-        body { font-family: 'Tajawal', sans-serif; margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; }
+        :root { --primary: #0a2616; --gold: #c5a059; --accent: #d4af37; --bg: #fdfdfd; }
+        body { font-family: 'Tajawal', sans-serif; margin: 0; background: var(--bg); color: var(--primary); }
         
-        /* الرسوميات والحركات */
-        .screen { display: none; min-height: 100vh; animation: pageIn 1s ease forwards; }
-        .active-screen { display: block !important; }
-        @keyframes pageIn { from { opacity: 0; transform: scale(1.02); } to { opacity: 1; transform: scale(1); } }
+        /* الهيدر الاحترافي */
+        header { background: var(--primary); color: var(--gold); padding: 20px; text-align: center; border-bottom: 5px solid var(--gold); }
+        
+        .container { max-width: 1200px; margin: auto; padding: 20px; display: grid; grid-template-columns: 350px 1fr; gap: 30px; }
 
-        /* الواجهة الرئيسية - الهيبة والفخامة */
-        .hero { height: 100vh; background: linear-gradient(rgba(10,38,22,0.92), rgba(10,38,22,0.92)), url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?q=80&w=1500') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; border-bottom: 8px solid var(--gold); }
-        .hero h1 { font-family: 'Amiri', serif; font-size: 5.5rem; color: var(--gold); margin: 0; letter-spacing: 2px; }
-        .hero p { font-size: 1.8rem; max-width: 850px; line-height: 1.6; font-weight: 300; margin: 25px 0; }
-        .main-btn { background: var(--gold); color: var(--primary); padding: 22px 60px; font-size: 1.4rem; font-weight: 800; border: none; border-radius: 4px; cursor: pointer; transition: 0.4s; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
-        .main-btn:hover { background: white; transform: translateY(-5px); }
+        /* قائمة الجلسات التدريبية (الخطة الزمنية) */
+        .curriculum-sidebar { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); height: fit-content; }
+        .session-link { padding: 15px; margin-bottom: 10px; border: 1px solid #eee; border-radius: 10px; cursor: pointer; transition: 0.3s; display: flex; justify-content: space-between; align-items: center; }
+        .session-link:hover, .session-link.active { background: var(--primary); color: var(--gold); border-color: var(--primary); }
+        .time-tag { font-size: 0.8rem; background: var(--gold); color: var(--primary); padding: 2px 8px; border-radius: 5px; font-weight: bold; }
 
-        /* تقسيم المنهج العصري */
-        .curriculum-map { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 50px; max-width: 1400px; margin: auto; }
-        .module-card { background: white; border-radius: 4px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); border-top: 5px solid var(--gold); transition: 0.4s; position: relative; }
-        .module-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        .module-card h3 { font-family: 'Amiri', serif; font-size: 2.2rem; color: var(--primary); margin-top: 0; }
-        .module-card ul { list-style: none; padding: 0; margin: 20px 0; }
-        .module-card li { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; }
-        .module-card li::before { content: '◈'; color: var(--gold); margin-left: 10px; }
+        /* منطقة المحتوى التدريبي */
+        .training-area { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); min-height: 600px; }
+        .ai-tutor { background: #f0f7f2; border-right: 5px solid var(--primary); padding: 20px; border-radius: 5px; margin-bottom: 30px; line-height: 1.8; }
+        
+        /* مختبر النطق */
+        .alphabet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 15px; margin-top: 20px; }
+        .char-card { background: var(--bg); border: 2px solid #eee; padding: 20px; text-align: center; font-size: 2rem; font-family: 'Amiri', serif; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+        .char-card:hover { border-color: var(--gold); background: #fffdf5; transform: translateY(-5px); }
 
-        /* منطقة الدرس الذكية */
-        .lesson-header { background: var(--primary); color: var(--gold); padding: 30px; text-align: center; }
-        .ai-tutor-bubble { background: #fff; border: 2px solid var(--gold); border-radius: 15px; padding: 25px; margin: 30px auto; max-width: 800px; position: relative; }
-        .word-box { font-family: 'Amiri', serif; font-size: 4rem; text-align: center; margin: 40px 0; color: var(--primary); cursor: pointer; transition: 0.3s; }
-        .word-box:hover { color: var(--gold); transform: scale(1.1); }
+        .btn-action { background: var(--gold); color: var(--primary); padding: 15px 30px; border: none; border-radius: 5px; font-weight: 800; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-    <section id="hero-screen" class="screen active-screen">
-        <div class="hero">
-            <h1>أكاديمية سجى غازي</h1>
-            <p>من هجاء الحرف إلى بلاغة البيان.. نقدم لك المنهاج العربي الأمتن عالمياً، مدمجاً بأحدث تقنيات النطق والذكاء الاصطناعي.</p>
-            <button class="main-btn" onclick="showScreen('curriculum-screen')">استعراض المنهاج الشامل</button>
-        </div>
-    </section>
+<header>
+    <h1>أكاديمية سجى غازي - المرحلة التأسيسية</h1>
+    <p>برنامج تدريبي مكثف (8 ساعات) | من الحرف إلى الرسم الإملائي</p>
+</header>
 
-    <section id="curriculum-screen" class="screen">
-        <div style="text-align: center; padding: 50px 20px;">
-            <h2 style="font-size: 3rem; font-family: 'Amiri';">خارطة الطريق للإتقان اللغوي</h2>
-            <p style="color: #666;">منهاج عصري متكامل يغطي كافة فنون لغة الضاد</p>
+<div class="container">
+    <div class="curriculum-sidebar">
+        <h3 style="border-bottom: 2px solid var(--gold); padding-bottom: 10px;">خطة الـ 8 ساعات</h3>
+        
+        <div class="session-link active" onclick="loadSession(1)">
+            <span>الجلسة 1: مخارج الحروف</span>
+            <span class="time-tag">ساعتان</span>
         </div>
         
-        <div class="curriculum-map">
-            <div class="module-card">
-                <h3>1. مرحلة الهجاء والتأسيس</h3>
-                <ul>
-                    <li>مخارج الحروف والصفات (مستوى أولي)</li>
-                    <li>الحركات والمدود والتنوين</li>
-                    <li>قواعد الرسم الإملائي التأسيسي</li>
-                </ul>
-                <button class="main-btn" style="width: 100%; font-size: 1rem; padding: 12px;" onclick="loadLesson('alpha')">بدء التأسيس</button>
-            </div>
-
-            <div class="module-card">
-                <h3>2. النحو الوظيفي والصرف</h3>
-                <ul>
-                    <li>بناء الجملة (الاسمية والفعلية)</li>
-                    <li>نظام الإعراب والمرفوعات</li>
-                    <li>اشتقاق الكلمة والأوزان الصرفية</li>
-                </ul>
-                <button class="main-btn" style="width: 100%; font-size: 1rem; padding: 12px;" onclick="loadLesson('grammar')">دخول عالم القواعد</button>
-            </div>
-
-            <div class="module-card">
-                <h3>3. البلاغة والتذوق الأدبي</h3>
-                <ul>
-                    <li>علم البيان (التشبيه والاستعارة)</li>
-                    <li>البديع والمحسنات اللفظية</li>
-                    <li>تحليل النصوص الشعرية والنثرية</li>
-                </ul>
-                <button class="main-btn" style="width: 100%; font-size: 1rem; padding: 12px;" onclick="loadLesson('rhetoric')">ارتقِ بفصاحتك</button>
-            </div>
+        <div class="session-link" onclick="loadSession(2)">
+            <span>الجلسة 2: الصفات والحركات</span>
+            <span class="time-tag">ساعتان</span>
         </div>
-    </section>
-
-    <section id="lesson-screen" class="screen">
-        <div class="lesson-header">
-            <h2 id="lesson-title-display">اسم الوحدة</h2>
-            <button onclick="showScreen('curriculum-screen')" style="background:none; border:1px solid var(--gold); color:white; cursor:pointer;">العودة للمنهاج</button>
+        
+        <div class="session-link" onclick="loadSession(3)">
+            <span>الجلسة 3: المدود والتنوين</span>
+            <span class="time-tag">ساعتان</span>
         </div>
-
-        <div class="ai-tutor-bubble">
-            <p id="ai-speech-text">مرحباً بك في رحلة العلم. أنا معلمك الافتراضي، سأقوم بنطق الكلمات وشرح القواعد لك بأسلوب عصري ورصين.</p>
+        
+        <div class="session-link" onclick="loadSession(4)">
+            <span>الجلسة 4: الرسم الإملائي</span>
+            <span class="time-tag">ساعتان</span>
         </div>
+    </div>
 
-        <div id="lesson-body" style="max-width: 1000px; margin: auto; padding: 20px;">
-            </div>
-    </section>
+    <div class="training-area" id="trainingArea">
+        </div>
+</div>
 
-    <script>
-        // نظام التنقل
-        function showScreen(id) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active-screen'));
-            document.getElementById(id).classList.add('active-screen');
-            window.scrollTo(0,0);
+<script>
+    const trainingSessions = {
+        1: {
+            title: "الجلسة الأولى: فلسفة مخارج الحروف (ساعتان)",
+            desc: "في هذه الجلسة، سنتدرب على استخراج الحرف من منبعه الأصلي. سنقسم الحروف حسب مخارجها (الحلق، اللسان، الشفتان، الخيشوم).",
+            ai: "أهلاً بك في أول ساعتين تدريبيتين. ركز في جرس الحرف وصداه. سنبدأ بحروف الحلق الشجرية.",
+            content: `
+                <h3>مختبر مخارج الحروف التفاعلي</h3>
+                <p>اضغط على كل مجموعة لتتعلم كيفية نطقها بشكل أكاديمي رصين:</p>
+                <div class="alphabet-grid">
+                    <div class="char-card" onclick="speak('أ - هـ. حروف الحلق أقصى الحلق')">أ - هـ</div>
+                    <div class="char-card" onclick="speak('ع - ح. حروف وسط الحلق')">ع - ح</div>
+                    <div class="char-card" onclick="speak('غ - خ. حروف أدنى الحلق')">غ - خ</div>
+                    <div class="char-card" onclick="speak('ق - ك. حروف أقصى اللسان')">ق - ك</div>
+                </div>
+                <div class="ai-tutor" style="margin-top:20px;">
+                    💡 <strong>توجيه المدرب:</strong> تدرب على نطق (أَ) بوضوح دون قلقلة، ثم انتقل لـ (هـ) مع جريان الهواء.
+                </div>
+            `
+        },
+        2: {
+            title: "الجلسة الثانية: الحركات والصفات (ساعتان)",
+            desc: "دراسة عميقة لزمن الحركة (الفتحة، الضمة، الكسرة) وصفات الحروف (الهمس، الجهر، الاستعلاء).",
+            ai: "الآن ننتقل لضبط ميزان الحركة. الفتحة نصف ألف، والضمة نصف واو، والكسرة نصف ياء.",
+            content: `
+                <h3>تطبيق زمن الحركات</h3>
+                <div class="alphabet-grid">
+                    <div class="char-card" onclick="speak('بَ - بِي - بُو. ميزان الحركة المتساوي')">بَ بِي بُو</div>
+                    <div class="char-card" onclick="speak('تَ - تِي - تُو')">تَ تِي تُو</div>
+                </div>
+                <p><strong>تمرين الصفات:</strong> استمع للفرق بين السين المهموسة والصاد المستعلية:</p>
+                <button class="btn-action" onclick="speak('سَ - صَ. اسمع حدة السين وتفخيم الصاد')">مقارنة السين والصاد</button>
+            `
+        },
+        3: {
+            title: "الجلسة الثالثة: المدود والتنوين (ساعتان)",
+            desc: "إتقان أزمنة المد الطبيعي والفرعي، والتمييز بين النون الملفوظة والمكتوبة.",
+            ai: "هذه الساعات مخصصة لضبط إيقاع الكلام. المد هو روح اللغة، والتنوين هو جرسها الموسيقي.",
+            content: `
+                <h3>منصة إيقاع المدود</h3>
+                <div class="alphabet-grid">
+                    <div class="char-card" onclick="speak('باااا - بوووو - بيييي. زمن حركتين')">بَا بُو بِي</div>
+                </div>
+                <h3 style="margin-top:20px;">مختبر التنوين</h3>
+                <div class="alphabet-grid">
+                    <div class="char-card" onclick="speak('بٌ - بٍ - بً. صوت الجرس النوني')">بٌ بٍ بً</div>
+                </div>
+            `
+        },
+        4: {
+            title: "الجلسة الرابعة: الرسم الإملائي التأسيسي (ساعتان)",
+            desc: "قواعد كتابة ما ينطق، والفرق بين التاء المربوطة والمبسوطة، وكراسي الهمزة.",
+            ai: "في الساعتين الأخيرتين، سنحول الصوت إلى صورة. كيف نرسم الكلمة دون خطأ واحد؟",
+            content: `
+                <h3>تحدي الإملاء البصري</h3>
+                <div class="ai-tutor">
+                    قاعدة ذهبية: التاء المربوطة تنطق (هاء) عند الوقف، والمبسوطة تبقى (تاء).
+                </div>
+                <button class="btn-action" onclick="speak('مدرسة. مدرسة. سمعت الهاء؟ إذن هي مربوطة. بيت. بيت. بقيت تاء؟ إذن هي مبسوطة')">تجربة القاعدة صوتاً</button>
+            `
         }
+    };
 
-        // محرك البيانات الضخم للمنهاج
-        const academyCurriculum = {
-            'alpha': {
-                title: "وحدة التأسيس: هجاء الحروف",
-                speech: "سنبدأ من الحجر الأساس. الحرف العربي له مخرج وصفة. اضغط على الحرف لتسمع مخرجه النقي.",
-                content: `
-                    <div class="word-box" onclick="speakPro('أَ - بَ - تَ - ثَ')">أَ بَ تَ ثَ 🔊</div>
-                    <p style="text-align:center">هنا نتعلم نطق الحروف من مخارجها الصحيحة (الحلق، الشفتان، اللسان).</p>
-                `
-            },
-            'grammar': {
-                title: "وحدة النحو: الجملة الاسمية",
-                speech: "الآن نبني أول جملة. الجملة الاسمية هي ركيزة الفصاحة، تتكون من مبتدأ وخبر.",
-                content: `
-                    <div class="word-box" onclick="speakPro('العلمُ نُورٌ')">العلمُ نُورٌ 🔊</div>
-                    <div class="ai-tutor-bubble" style="background:#f0f7f2">
-                        <strong>الإعراب الذكي:</strong><br>
-                        العلمُ: مبتدأ مرفوع وعلامة رفعه الضمة الظاهرة.<br>
-                        نورٌ: خبر مرفوع وعلامة رفعه الضمة الظاهرة.
-                    </div>
-                `
-            },
-            'rhetoric': {
-                title: "وحدة البلاغة: التشبيه",
-                speech: "البلاغة هي مطابقة الكلام لمقتضى الحال. التشبيه هو أول فنون البيان.",
-                content: `
-                    <div class="word-box" onclick="speakPro('الرجلُ كالأسدِ في الشجاعة')">الرجلُ كالأسدِ في الشجاعة 🔊</div>
-                    <p style="text-align:center">أركان التشبيه: المشبه (الرجل)، المشبه به (الأسد)، الأداة (الكاف)، وجه الشبه (الشجاعة).</p>
-                `
-            }
-        };
+    function loadSession(id) {
+        const session = trainingSessions[id];
+        // تحديث القائمة الجانبية
+        document.querySelectorAll('.session-link').forEach(el => el.classList.remove('active'));
+        event.currentTarget.classList.add('active');
 
-        function loadLesson(key) {
-            const data = academyCurriculum[key];
-            document.getElementById('lesson-title-display').innerText = data.title;
-            document.getElementById('ai-speech-text').innerText = data.speech;
-            document.getElementById('lesson-body').innerHTML = data.content;
-            showScreen('lesson-screen');
-            speakPro(data.speech);
-        }
+        // تحديث المحتوى
+        const area = document.getElementById('trainingArea');
+        area.innerHTML = `
+            <h2 style="color:var(--gold); font-family:'Amiri'; font-size:2.5rem;">${session.title}</h2>
+            <p style="font-size:1.2rem; color:#666;">${session.desc}</p>
+            <div class="ai-tutor">🤖 <strong>المعلم الذكي:</strong> ${session.ai}</div>
+            ${session.content}
+        `;
+        speak(session.ai);
+    }
 
-        // محرك النطق البشري الفاخر
-        function speakPro(text) {
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            
-            // ضبط الصوت ليكون وقوراً ورصيناً
-            utterance.lang = 'ar-SA';
-            utterance.pitch = 0.85; // نبرة عميقة تشبه المعلم الخبير
-            utterance.rate = 0.8;  // سرعة متزنة جداً للتدريب
-            
-            window.speechSynthesis.speak(utterance);
-        }
-    </script>
+    function speak(text) {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'ar-SA';
+        utter.rate = 0.8; // سرعة تعليمية رصينة
+        utter.pitch = 0.9; 
+        window.speechSynthesis.speak(utter);
+    }
+
+    // تحميل الجلسة الأولى عند الفتح
+    window.onload = () => loadSession(1);
+</script>
+
 </body>
 </html>
