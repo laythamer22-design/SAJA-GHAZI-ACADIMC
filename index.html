@@ -3,184 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية سجى غازي | صرح اللغة العربية الذكي</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>أكاديمية سجى غازي | التميز في اللغة العربية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a472a; /* أخضر ملكي */
-            --gold: #d4af37;    /* ذهبي */
+            --primary: #1a472a; /* الأخضر الملكي */
+            --gold: #c5a059;    /* الذهبي الفاخر */
+            --accent: #d4af37;
             --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.15);
+            --bg: #f8f9fa;
         }
 
         body {
             font-family: 'Tajawal', sans-serif;
             margin: 0;
-            background: #fdfdfd;
+            background-color: var(--bg);
             color: var(--primary);
-            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* --- الأقسام: جعلها مخفية افتراضياً ما عدا الهيرو --- */
-        .section-page { display: none; min-height: 100vh; width: 100%; }
-        .active-section { display: flex !important; animation: fadeIn 0.8s ease-in-out; flex-direction: column; align-items: center; justify-content: center; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* --- واجهة الترحيب (Hero) --- */
-        #heroPage {
-            background: linear-gradient(rgba(26, 71, 42, 0.85), rgba(26, 71, 42, 0.85)), 
+        /* --- Landing Page Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                         url('https://images.unsplash.com/photo-1519791883288-dc8bd696e667?auto=format&fit=crop&w=1500&q=80');
             background-size: cover;
             background-position: center;
-            color: var(--gold);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            color: var(--white);
         }
 
-        .hero-content h1 { font-size: 4rem; margin: 0; font-weight: 900; text-shadow: 3px 3px 6px rgba(0,0,0,0.4); }
-        .hero-content p { font-size: 1.6rem; color: white; margin: 20px 0; max-width: 800px; line-height: 1.6; }
+        .hero h1 { font-family: 'Amiri', serif; font-size: 5rem; color: var(--gold); margin: 0; }
+        .hero p { font-size: 1.8rem; max-width: 800px; margin: 20px 0; font-weight: 300; }
 
-        /* --- الأزرار الاحترافية --- */
-        .cta-button {
+        /* --- Buttons --- */
+        .cta-btn {
             background: var(--gold);
             color: var(--primary);
-            padding: 18px 50px;
-            font-size: 1.3rem;
+            padding: 18px 60px;
+            font-size: 1.4rem;
+            font-weight: 900;
             border: none;
-            border-radius: 50px;
+            border-radius: 4px;
             cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-            transition: all 0.3s ease;
-            text-decoration: none;
+            transition: 0.4s;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .cta-btn:hover { background: var(--white); transform: scale(1.05); }
+
+        /* --- Main App Container --- */
+        .app-container { display: none; padding: 40px 20px; max-width: 1200px; margin: auto; }
+
+        /* --- Levels Styling --- */
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 50px;
         }
 
-        .cta-button:hover { transform: translateY(-5px); background: var(--white); box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3); }
+        .level-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border-bottom: 5px solid transparent;
+        }
 
-        /* --- واجهة التسجيل --- */
-        #registerPage { background: #f4f7f6; }
-        .card { background: white; padding: 50px; border-radius: 25px; box-shadow: var(--shadow); max-width: 500px; width: 90%; text-align: center; }
-        .input-field { width: 100%; padding: 15px; margin: 15px 0; border: 2px solid #eee; border-radius: 12px; font-size: 1rem; font-family: 'Tajawal'; box-sizing: border-box; }
-        .input-field:focus { border-color: var(--gold); outline: none; }
+        .level-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        .level-card h3 { color: var(--gold); font-size: 1.8rem; margin-bottom: 15px; }
+        .level-card p { color: #666; font-size: 1.1rem; line-height: 1.6; }
 
-        /* --- لوحة الدروس (Dashboard) --- */
-        #dashboardPage { padding: 40px; background: #fff; justify-content: flex-start; }
-        .dashboard-container { max-width: 1100px; width: 100%; display: grid; grid-template-columns: 1fr 2fr; gap: 30px; margin-top: 20px; }
-        .side-info { background: var(--primary); color: white; padding: 30px; border-radius: 20px; height: fit-content; }
-        .lessons-grid { display: grid; gap: 20px; }
-        .lesson-card { border: 2px solid #f0f0f0; padding: 25px; border-radius: 15px; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden; }
-        .lesson-card:hover { border-color: var(--gold); background: #fdfaf0; }
-        .lesson-card.locked { opacity: 0.6; cursor: not-allowed; }
-        .status-badge { background: var(--gold); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        .lock-icon { font-size: 1.5rem; color: #ccc; margin-top: 15px; }
+
+        /* --- Dashboard UI --- */
+        .active-app { display: block !important; animation: fadeInUp 0.8s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        .ai-mentor-box {
+            background: var(--primary);
+            color: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ai-avatar { width: 80px; height: 80px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
 
     </style>
 </head>
 <body>
 
-    <section id="heroPage" class="section-page active-section">
-        <div class="hero-content">
-            <h1>أكاديمية سجى غازي</h1>
-            <p>المستقبل الذكي لتعليم اللغة العربية. أول منصة تعتمد على الذكاء الاصطناعي في تدريب الكفاءات اللغوية وتطوير النطق والسمع.</p>
-            <button class="cta-button" onclick="changeSection('registerPage')">بدء رحلة التعلم الآن</button>
-        </div>
+    <section id="landing" class="hero">
+        <h1>أكاديمية سجى غازي</h1>
+        <p>نحو آفاقٍ جديدة في إتقان لغة الضاد باستخدام الذكاء الاصطناعي التفاعلي</p>
+        <button class="cta-btn" onclick="launchAcademy()">دخول الصرح التعليمي</button>
     </section>
 
-    <section id="registerPage" class="section-page">
-        <div class="card">
-            <h2 style="font-size: 2rem; margin-bottom: 10px;">إنضم إلينا</h2>
-            <p style="color: #666; margin-bottom: 30px;">قم بتسجيل بياناتك لفتح المسارات التعليمية الذكية</p>
-            <input type="text" id="studentName" class="input-field" placeholder="الاسم الكامل باللغة العربية">
-            <select id="levelSelect" class="input-field">
-                <option value="beginner">المستوى المبتدئ (تأسيس)</option>
-                <option value="intermediate">المستوى المتوسط (قواعد)</option>
-                <option value="advanced">المستوى المتقدم (أدب وبلاغة)</option>
-            </select>
-            <button class="cta-button" style="width: 100%;" onclick="startLearning()">دخول المنصة</button>
-        </div>
-    </section>
-
-    <section id="dashboardPage" class="section-page">
-        <h1 style="color: var(--primary); margin-bottom: 5px;">مرحباً بك في أكاديميتك</h1>
-        <p id="welcomeMsg" style="font-size: 1.2rem; color: #555; margin-bottom: 30px;"></p>
-        
-        <div class="dashboard-container">
-            <div class="side-info">
-                <h3>🤖 المعلم الذكي</h3>
-                <p id="aiHint">بانتظار تسجيل دخولك لتحليل مستواك...</p>
-                <hr style="border-color: rgba(255,255,255,0.1);">
-                <p><strong>التقدم الإجمالي:</strong> 0%</p>
-                <button onclick="location.reload()" style="background:none; border: 1px solid white; color: white; padding: 10px; width: 100%; border-radius: 10px; cursor: pointer;">تسجيل الخروج</button>
-            </div>
-            
-            <div class="lessons-grid">
-                <div class="lesson-card" onclick="openLesson('الجملة الاسمية')">
-                    <span class="status-badge">متاح الآن</span>
-                    <h3>الوحدة الأولى: الجملة الاسمية</h3>
-                    <p>تعلم أركان المبتدأ والخبر مع التدقيق الصوتي الآلي.</p>
-                    <small>مدة الوحدة: 45 دقيقة</small>
-                </div>
-
-                <div class="lesson-card locked">
-                    <span class="status-badge" style="background:#ddd; color:#888;">مغلق</span>
-                    <h3>الوحدة الثانية: الجملة الفعلية</h3>
-                    <p>تفتح تلقائياً بعد اجتياز اختبار الوحدة الأولى بنسبة 80%.</p>
-                </div>
+    <div id="academyApp" class="app-container">
+        <div class="ai-mentor-box">
+            <div class="ai-avatar">🤖</div>
+            <div>
+                <h2>المعلم الافتراضي الذكي</h2>
+                <p id="ai-text">مرحباً بك في رحلة الإتقان. لقد صممت لك ثلاثة مسارات تعليمية دقيقة لتناسب تطورك اللغوي.</p>
             </div>
         </div>
-    </section>
+
+        <div class="levels-grid">
+            <div class="level-card" onclick="startCourse('المبتدئ')">
+                <h3>المستوى المبتدئ</h3>
+                <p>تأسيس القراءة، مخارج الحروف الصحيحة، وبناء الجملة الاسمية البسيطة.</p>
+                <button class="btn-sm" style="background:none; border:1px solid var(--gold); color:var(--gold); padding:8px 20px; border-radius:4px; cursor:pointer; margin-top:15px;">ابدأ الآن</button>
+            </div>
+
+            <div class="level-card">
+                <h3>المستوى المتوسط</h3>
+                <p>التعمق في الجملة الفعلية، علامات الإعراب، وفنون الصرف الأساسية.</p>
+                <div class="lock-icon">🔒 يتطلب إتمام المستوى الأول</div>
+            </div>
+
+            <div class="level-card">
+                <h3>المستوى المتقدم</h3>
+                <p>البلاغة والبيان، تحليل النصوص الأدبية، والتدريب على الخطابة والإلقاء.</p>
+                <div class="lock-icon">🔒 يتطلب إتمام المستوى الثاني</div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // دالة التنقل بين الأقسام (المصلحة)
-        function changeSection(sectionId) {
-            // إخفاء كل الأقسام
-            const sections = document.querySelectorAll('.section-page');
-            sections.forEach(sec => {
-                sec.classList.remove('active-section');
-            });
-            
-            // إظهار القسم المطلوب
-            const active = document.getElementById(sectionId);
-            if(active) {
-                active.classList.add('active-section');
-                window.scrollTo(0, 0);
-            }
+        // دالة تشغيل الأكاديمية
+        function launchAcademy() {
+            document.getElementById('landing').style.display = 'none';
+            document.getElementById('academyApp').classList.add('active-app');
+            speakPro("أهلاً بك في أكاديمية سجى غازي. أنا معلمُك الافتراضي، سأرافقك في مستوياتك الثلاثة، من التأسيس وحتى الإتقان.");
         }
 
-        // دالة بدء التعلم (معالجة البيانات)
-        function startLearning() {
-            const name = document.getElementById('studentName').value;
-            if(!name || name.length < 3) {
-                alert("من فضلك أدخل اسمك الكامل بشكل صحيح");
-                return;
-            }
-
-            // تحديث واجهة الكورسات بالبيانات
-            document.getElementById('welcomeMsg').innerText = "المتدرب: " + name;
-            document.getElementById('aiHint').innerText = "أهلاً " + name + "، قمت بتحليل بياناتك. نحن جاهزون للبدء بوحدة الجملة الاسمية. اضغط على الكارت لبدء الاستماع.";
-            
-            // نطق الترحيب
-            speak("أهلاً بك يا " + name + " في أكاديمية سجى غازي الذكية. نتمنى لك رحلة ممتعة.");
-            
-            // الانتقال للوحة الكورسات
-            changeSection('dashboardPage');
-        }
-
-        // نظام النطق الصوتي
-        function speak(text) {
+        // محرك النطق الاحترافي المحسن
+        function speakPro(text) {
             if ('speechSynthesis' in window) {
-                const msg = new SpeechSynthesisUtterance(text);
-                msg.lang = 'ar-SA';
-                msg.rate = 0.8;
-                window.speechSynthesis.speak(msg);
+                // إلغاء أي نطق سابق لتفادي التداخل
+                window.speechSynthesis.cancel();
+
+                const utterance = new SpeechSynthesisUtterance(text);
+                
+                // البحث عن أفضل صوت عربي متاح
+                let voices = window.speechSynthesis.getVoices();
+                let arabicVoice = voices.find(v => v.lang.includes('ar'));
+                
+                if (arabicVoice) utterance.voice = arabicVoice;
+
+                // ضبط المعايير ليكون الصوت "فخماً" وبشرياً
+                utterance.pitch = 0.9;  // جعل الصوت أعمق وقوراً
+                utterance.rate = 0.85;  // سرعة متزنة للتعليم
+                utterance.volume = 1;
+
+                window.speechSynthesis.speak(utterance);
             }
         }
 
-        function openLesson(lesson) {
-            speak("بدء محتوى " + lesson);
-            alert("جاري تحميل نظام " + lesson + " التفاعلي الصوتي... يرجى التأكد من تشغيل السماعات.");
+        function startCourse(level) {
+            let msg = "لقد اخترت مسار " + level + ". سنبدأ الآن بالوحدة الأولى. هل أنت مستعد؟";
+            document.getElementById('ai-text').innerText = msg;
+            speakPro(msg);
         }
+
+        // تحميل الأصوات عند تشغيل الصفحة
+        window.speechSynthesis.onvoiceschanged = function() {
+            window.speechSynthesis.getVoices();
+        };
     </script>
 </body>
 </html>
