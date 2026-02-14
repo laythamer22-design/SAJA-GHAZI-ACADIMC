@@ -3,154 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية سجى غازي | المنصة العالمية لعلوم العربية</title>
+    <title>أكاديمية سجى غازي | المنهاج العالمي للغة العربية</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #0f2d1a; --gold: #c5a059; --accent: #d4af37; --bg: #fdfdfd; }
-        body { font-family: 'Tajawal', sans-serif; margin: 0; background: var(--bg); color: var(--primary); overflow-x: hidden; }
+        :root { --primary: #0a2616; --gold: #c5a059; --accent: #d4af37; --bg: #f9fbf9; --text: #2c3e50; }
+        body { font-family: 'Tajawal', sans-serif; margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; }
         
-        .screen { display: none; min-height: 100vh; animation: fadeIn 0.8s ease; }
+        /* الرسوميات والحركات */
+        .screen { display: none; min-height: 100vh; animation: pageIn 1s ease forwards; }
         .active-screen { display: block !important; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pageIn { from { opacity: 0; transform: scale(1.02); } to { opacity: 1; transform: scale(1); } }
 
-        /* الواجهة الرئيسية */
-        .hero { height: 100vh; background: linear-gradient(45deg, rgba(15,45,26,0.95), rgba(15,45,26,0.8)), url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=1500') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; }
-        .hero h1 { font-family: 'Amiri', serif; font-size: 5rem; color: var(--gold); margin: 0; }
-        .btn-gold { background: var(--gold); color: var(--primary); padding: 18px 45px; font-size: 1.3rem; font-weight: 800; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin-top: 30px; }
-        .btn-gold:hover { background: white; transform: scale(1.05); }
+        /* الواجهة الرئيسية - الهيبة والفخامة */
+        .hero { height: 100vh; background: linear-gradient(rgba(10,38,22,0.92), rgba(10,38,22,0.92)), url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?q=80&w=1500') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; border-bottom: 8px solid var(--gold); }
+        .hero h1 { font-family: 'Amiri', serif; font-size: 5.5rem; color: var(--gold); margin: 0; letter-spacing: 2px; }
+        .hero p { font-size: 1.8rem; max-width: 850px; line-height: 1.6; font-weight: 300; margin: 25px 0; }
+        .main-btn { background: var(--gold); color: var(--primary); padding: 22px 60px; font-size: 1.4rem; font-weight: 800; border: none; border-radius: 4px; cursor: pointer; transition: 0.4s; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+        .main-btn:hover { background: white; transform: translateY(-5px); }
 
-        /* نظام الاختبار */
-        .quiz-container { max-width: 800px; margin: 50px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        .option-btn { width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #eee; border-radius: 10px; cursor: pointer; text-align: right; font-size: 1.1rem; transition: 0.2s; background: white; }
-        .option-btn:hover { border-color: var(--gold); background: #fffcf5; }
+        /* تقسيم المنهج العصري */
+        .curriculum-map { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 50px; max-width: 1400px; margin: auto; }
+        .module-card { background: white; border-radius: 4px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); border-top: 5px solid var(--gold); transition: 0.4s; position: relative; }
+        .module-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .module-card h3 { font-family: 'Amiri', serif; font-size: 2.2rem; color: var(--primary); margin-top: 0; }
+        .module-card ul { list-style: none; padding: 0; margin: 20px 0; }
+        .module-card li { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; }
+        .module-card li::before { content: '◈'; color: var(--gold); margin-left: 10px; }
 
-        /* الأكاديمية والمحتوى */
-        .dashboard { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
-        .sidebar { background: var(--primary); color: white; padding: 30px; }
-        .content { padding: 40px; }
-        .lesson-card { background: white; padding: 25px; border-radius: 15px; margin-bottom: 20px; border-right: 6px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer; }
-        
-        .ai-voice-box { background: #e8f5e9; border: 1px solid #4caf50; padding: 15px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 15px; }
+        /* منطقة الدرس الذكية */
+        .lesson-header { background: var(--primary); color: var(--gold); padding: 30px; text-align: center; }
+        .ai-tutor-bubble { background: #fff; border: 2px solid var(--gold); border-radius: 15px; padding: 25px; margin: 30px auto; max-width: 800px; position: relative; }
+        .word-box { font-family: 'Amiri', serif; font-size: 4rem; text-align: center; margin: 40px 0; color: var(--primary); cursor: pointer; transition: 0.3s; }
+        .word-box:hover { color: var(--gold); transform: scale(1.1); }
     </style>
 </head>
 <body>
 
-    <section id="screen-landing" class="screen active-screen">
+    <section id="hero-screen" class="screen active-screen">
         <div class="hero">
             <h1>أكاديمية سجى غازي</h1>
-            <p style="font-size: 1.6rem; max-width: 700px;">أول منظومة تعليمية ذكية في الوطن العربي تدمج علوم اللغة بالذكاء الاصطناعي الصوتي</p>
-            <button class="btn-gold" onclick="showScreen('screen-quiz')">بدء اختبار تحديد المستوى</button>
+            <p>من هجاء الحرف إلى بلاغة البيان.. نقدم لك المنهاج العربي الأمتن عالمياً، مدمجاً بأحدث تقنيات النطق والذكاء الاصطناعي.</p>
+            <button class="main-btn" onclick="showScreen('curriculum-screen')">استعراض المنهاج الشامل</button>
         </div>
     </section>
 
-    <section id="screen-quiz" class="screen">
-        <div class="quiz-container">
-            <h2 id="quiz-title" style="color: var(--primary);">سؤال تحديد المستوى (1/5)</h2>
-            <p id="quiz-question" style="font-size: 1.3rem; margin-bottom: 30px;">ما هو الإعراب الصحيح لكلمة "السماء" في جملة "السماءُ صافيةٌ"؟</p>
-            <div id="quiz-options">
-                <button class="option-btn" onclick="nextQuestion(2)">مبتدأ مرفوع بالضمة</button>
-                <button class="option-btn" onclick="nextQuestion(0)">فاعل مرفوع بالضمة</button>
-                <button class="option-btn" onclick="nextQuestion(0)">مفعول به منصوب</button>
+    <section id="curriculum-screen" class="screen">
+        <div style="text-align: center; padding: 50px 20px;">
+            <h2 style="font-size: 3rem; font-family: 'Amiri';">خارطة الطريق للإتقان اللغوي</h2>
+            <p style="color: #666;">منهاج عصري متكامل يغطي كافة فنون لغة الضاد</p>
+        </div>
+        
+        <div class="curriculum-map">
+            <div class="module-card">
+                <h3>1. مرحلة الهجاء والتأسيس</h3>
+                <ul>
+                    <li>مخارج الحروف والصفات (مستوى أولي)</li>
+                    <li>الحركات والمدود والتنوين</li>
+                    <li>قواعد الرسم الإملائي التأسيسي</li>
+                </ul>
+                <button class="main-btn" style="width: 100%; font-size: 1rem; padding: 12px;" onclick="loadLesson('alpha')">بدء التأسيس</button>
+            </div>
+
+            <div class="module-card">
+                <h3>2. النحو الوظيفي والصرف</h3>
+                <ul>
+                    <li>بناء الجملة (الاسمية والفعلية)</li>
+                    <li>نظام الإعراب والمرفوعات</li>
+                    <li>اشتقاق الكلمة والأوزان الصرفية</li>
+                </ul>
+                <button class="main-btn" style="width: 100%; font-size: 1rem; padding: 12px;" onclick="loadLesson('grammar')">دخول عالم القواعد</button>
+            </div>
+
+            <div class="module-card">
+                <h3>3. البلاغة والتذوق الأدبي</h3>
+                <ul>
+                    <li>علم البيان (التشبيه والاستعارة)</li>
+                    <li>البديع والمحسنات اللفظية</li>
+                    <li>تحليل النصوص الشعرية والنثرية</li>
+                </ul>
+                <button class="main-btn" style="width: 100%; font-size: 1rem; padding: 12px;" onclick="loadLesson('rhetoric')">ارتقِ بفصاحتك</button>
             </div>
         </div>
     </section>
 
-    <section id="screen-dashboard" class="screen">
-        <div class="dashboard">
-            <div class="sidebar">
-                <h2 style="color: var(--gold);">الأكاديمية</h2>
-                <p id="user-level-badge" style="background: var(--gold); color: var(--primary); padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold;">مستوى: جاري التقييم</p>
-                <hr style="opacity: 0.2; margin: 20px 0;">
-                <nav>
-                    <p style="cursor:pointer" onclick="loadCategory('grammar')">📚 دروس النحو</p>
-                    <p style="cursor:pointer" onclick="loadCategory('voice')">🗣️ مخارج الحروف</p>
-                    <p style="cursor:pointer" onclick="loadCategory('literary')">🖋️ البلاغة والأدب</p>
-                </nav>
-            </div>
-            <div class="content">
-                <div class="ai-voice-box">
-                    <span style="font-size: 2rem;">🤖</span>
-                    <p id="ai-instructor">أهلاً بك في رحلتك التعليمية. اضغط على أي درس لبدء التدريب الصوتي والتفاعلي.</p>
-                </div>
-                <div id="lessons-list">
-                    </div>
-            </div>
+    <section id="lesson-screen" class="screen">
+        <div class="lesson-header">
+            <h2 id="lesson-title-display">اسم الوحدة</h2>
+            <button onclick="showScreen('curriculum-screen')" style="background:none; border:1px solid var(--gold); color:white; cursor:pointer;">العودة للمنهاج</button>
         </div>
+
+        <div class="ai-tutor-bubble">
+            <p id="ai-speech-text">مرحباً بك في رحلة العلم. أنا معلمك الافتراضي، سأقوم بنطق الكلمات وشرح القواعد لك بأسلوب عصري ورصين.</p>
+        </div>
+
+        <div id="lesson-body" style="max-width: 1000px; margin: auto; padding: 20px;">
+            </div>
     </section>
 
     <script>
-        let score = 0;
-        let currentLevel = "";
-
+        // نظام التنقل
         function showScreen(id) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active-screen'));
             document.getElementById(id).classList.add('active-screen');
             window.scrollTo(0,0);
         }
 
-        // نظام اختبار تحديد المستوى
-        function nextQuestion(points) {
-            score += points;
-            const qTitle = document.getElementById('quiz-title');
-            const qText = document.getElementById('quiz-question');
-            const qOptions = document.getElementById('quiz-options');
-
-            if (qTitle.innerText.includes("1/5")) {
-                qTitle.innerText = "سؤال تحديد المستوى (2/5)";
-                qText.innerText = "أي جملة تحتوي على فعل مضارع منصوب؟";
-                qOptions.innerHTML = `
-                    <button class="option-btn" onclick="nextQuestion(2)">لن يندمَ المجتهد</button>
-                    <button class="option-btn" onclick="nextQuestion(0)">يندمُ المجتهد</button>
-                    <button class="option-btn" onclick="nextQuestion(0)">لم يندمْ المجتهد</button>
-                `;
-            } else {
-                finalizeLevel();
+        // محرك البيانات الضخم للمنهاج
+        const academyCurriculum = {
+            'alpha': {
+                title: "وحدة التأسيس: هجاء الحروف",
+                speech: "سنبدأ من الحجر الأساس. الحرف العربي له مخرج وصفة. اضغط على الحرف لتسمع مخرجه النقي.",
+                content: `
+                    <div class="word-box" onclick="speakPro('أَ - بَ - تَ - ثَ')">أَ بَ تَ ثَ 🔊</div>
+                    <p style="text-align:center">هنا نتعلم نطق الحروف من مخارجها الصحيحة (الحلق، الشفتان، اللسان).</p>
+                `
+            },
+            'grammar': {
+                title: "وحدة النحو: الجملة الاسمية",
+                speech: "الآن نبني أول جملة. الجملة الاسمية هي ركيزة الفصاحة، تتكون من مبتدأ وخبر.",
+                content: `
+                    <div class="word-box" onclick="speakPro('العلمُ نُورٌ')">العلمُ نُورٌ 🔊</div>
+                    <div class="ai-tutor-bubble" style="background:#f0f7f2">
+                        <strong>الإعراب الذكي:</strong><br>
+                        العلمُ: مبتدأ مرفوع وعلامة رفعه الضمة الظاهرة.<br>
+                        نورٌ: خبر مرفوع وعلامة رفعه الضمة الظاهرة.
+                    </div>
+                `
+            },
+            'rhetoric': {
+                title: "وحدة البلاغة: التشبيه",
+                speech: "البلاغة هي مطابقة الكلام لمقتضى الحال. التشبيه هو أول فنون البيان.",
+                content: `
+                    <div class="word-box" onclick="speakPro('الرجلُ كالأسدِ في الشجاعة')">الرجلُ كالأسدِ في الشجاعة 🔊</div>
+                    <p style="text-align:center">أركان التشبيه: المشبه (الرجل)، المشبه به (الأسد)، الأداة (الكاف)، وجه الشبه (الشجاعة).</p>
+                `
             }
-        }
-
-        function finalizeLevel() {
-            if(score >= 4) currentLevel = "متقدم";
-            else if(score >= 2) currentLevel = "متوسط";
-            else currentLevel = "مبتدئ";
-
-            document.getElementById('user-level-badge').innerText = "مستوى: " + currentLevel;
-            showScreen('screen-dashboard');
-            loadCategory('grammar');
-            speak("تهانينا، نتيجتك في الاختبار هي مستوى " + currentLevel + ". لقد فتحت لك المسارات التدريبية المناسبة.");
-        }
-
-        const library = {
-            grammar: [
-                { t: "المبتدأ والخبر", d: "دراسة تفصيلية لركني الجملة مع ضبط الضمة.", v: "المبتدأ مرفوع دائماً، الخبر يكمل المعنى." },
-                { t: "إن وأخواتها", d: "تأثير الحروف النسخة على الجملة الاسمية.", v: "إنّ تنصب المبتدأ وترفع الخبر." }
-            ],
-            voice: [
-                { t: "مخرج القاف والكاف", d: "التمييز الصوتي بين القاف الشديدة والكاف المهموسة.", v: "ق، ك. اسمع الفرق في المخرج." }
-            ]
         };
 
-        function loadCategory(cat) {
-            const list = document.getElementById('lessons-list');
-            list.innerHTML = '';
-            library[cat]?.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'lesson-card';
-                div.innerHTML = `<h3>${item.t}</h3><p>${item.d}</p>`;
-                div.onclick = () => {
-                    speak(item.t + ". " + item.v);
-                    document.getElementById('ai-instructor').innerText = "🤖 المعلم الذكي: " + item.v;
-                };
-                list.appendChild(div);
-            });
+        function loadLesson(key) {
+            const data = academyCurriculum[key];
+            document.getElementById('lesson-title-display').innerText = data.title;
+            document.getElementById('ai-speech-text').innerText = data.speech;
+            document.getElementById('lesson-body').innerHTML = data.content;
+            showScreen('lesson-screen');
+            speakPro(data.speech);
         }
 
-        function speak(text) {
+        // محرك النطق البشري الفاخر
+        function speakPro(text) {
             window.speechSynthesis.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'ar-SA';
-            utter.rate = 0.85;
-            utter.pitch = 0.9; // نبرة فخمة
-            window.speechSynthesis.speak(utter);
+            const utterance = new SpeechSynthesisUtterance(text);
+            
+            // ضبط الصوت ليكون وقوراً ورصيناً
+            utterance.lang = 'ar-SA';
+            utterance.pitch = 0.85; // نبرة عميقة تشبه المعلم الخبير
+            utterance.rate = 0.8;  // سرعة متزنة جداً للتدريب
+            
+            window.speechSynthesis.speak(utterance);
         }
     </script>
 </body>
