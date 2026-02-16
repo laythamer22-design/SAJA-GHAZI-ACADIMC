@@ -2,138 +2,104 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية هدير الأسدي | الموسوعة التدريبية العالمية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <title>منصة هدير الأسدي الذكية | Future LMS</title>
     <style>
         :root {
-            --navy-deep: #0a0f1d;
-            --gold-royal: #b59410;
-            --gold-light: #e2c25d;
-            --text-silver: #e2e8f0;
-            --white: #ffffff;
-            --bg-body: #f4f7f9;
+            --primary: #050a18;
+            --gold: #c5a021;
+            --glass: rgba(255, 255, 255, 0.03);
+            --neon-gold: #ffdf00;
         }
-
-        body { font-family: 'Cairo', sans-serif; margin: 0; background: var(--bg-body); color: var(--navy-deep); overflow-x: hidden; }
-
-        /* Navigation Sidebar */
-        .sidebar {
-            position: fixed; right: 0; top: 0; width: 300px; height: 100vh;
-            background: var(--navy-deep); color: var(--white); padding: 40px 20px;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.2); overflow-y: auto; z-index: 1000;
+        body {
+            background: var(--primary);
+            color: white;
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            display: flex;
         }
-        .sidebar h2 { font-family: 'Amiri', serif; color: var(--gold-royal); font-size: 2.2rem; border-bottom: 1px solid var(--gold-royal); padding-bottom: 10px; }
-        .nav-item { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.3s; font-size: 0.95rem; }
-        .nav-item:hover { background: rgba(181, 148, 16, 0.15); color: var(--gold-light); }
-
-        /* Main Content Area */
-        .main-content { margin-right: 340px; padding: 60px; max-width: 1000px; }
-
-        /* Academic Header */
-        .encyclopedia-header { border-bottom: 4px solid var(--gold-royal); margin-bottom: 50px; padding-bottom: 20px; }
-        .encyclopedia-header h1 { font-family: 'Amiri', serif; font-size: 3.5rem; margin: 0; color: var(--navy-deep); }
-        .accreditation-seal { display: inline-block; padding: 8px 15px; border: 1px solid var(--gold-royal); color: var(--gold-royal); font-weight: bold; border-radius: 4px; margin-top: 10px; }
-
-        /* Content Sections */
-        .module-section { background: var(--white); padding: 50px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 60px; }
-        .module-section h2 { color: var(--gold-royal); font-size: 2.2rem; margin-bottom: 30px; border-right: 6px solid var(--navy-deep); padding-right: 20px; }
-        
-        .scientific-text { font-size: 1.25rem; line-height: 2.2; color: #334155; text-align: justify; }
-        .scientific-text b { color: var(--navy-deep); }
-
-        /* Specialized Boxes */
-        .case-study { background: #f0f7ff; border-right: 5px solid #3b82f6; padding: 30px; margin: 30px 0; border-radius: 0 10px 10px 0; }
-        .exercise-protocol { background: #fffbeb; border: 2px dashed var(--gold-royal); padding: 30px; margin-top: 40px; }
-        
-        .reference-list { margin-top: 50px; font-size: 0.85rem; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 20px; }
-
-        /* Audio Controls */
-        .audio-btn { background: var(--gold-royal); color: white; border: none; padding: 10px 20px; border-radius: 50px; cursor: pointer; margin-bottom: 20px; }
+        /* Dashboard Sidebar */
+        .dashboard-nav {
+            width: 80px;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            border-left: 1px solid var(--glass);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30px;
+        }
+        /* Content Window */
+        .main-stage {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        .ai-status-card {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            border: 1px solid var(--gold);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .learning-node {
+            background: var(--glass);
+            border-right: 4px solid var(--gold);
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        .learning-node:hover {
+            background: rgba(197, 160, 33, 0.05);
+            transform: translateX(-10px);
+        }
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: #222;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .progress-fill {
+            width: 65%;
+            height: 100%;
+            background: var(--gold);
+            box-shadow: 0 0 10px var(--neon-gold);
+        }
     </style>
 </head>
 <body>
 
-    <aside class="sidebar">
-        <h2>هدير الأسدي</h2>
-        <p style="opacity: 0.6; font-size: 0.8rem;">نظام إدارة المناهج v3.0</p>
-        <div class="nav-item" onclick="scrollToId('sec1')">1. سيكولوجية المقاومة</div>
-        <div class="nav-item" onclick="scrollToId('sec2')">2. تشريح عقلية النمو (Stanford)</div>
-        <div class="nav-item" onclick="scrollToId('sec3')">3. بروتوكول تحييد الناقد (CBT)</div>
-        <div class="nav-item" onclick="scrollToId('sec4')">4. المراجع والمعايير الدولية</div>
-    </aside>
+    <nav class="dashboard-nav">
+        <div style="color: var(--gold); font-size: 24px;">💠</div>
+        </nav>
 
-    <main class="main-content">
-        <header class="encyclopedia-header">
-            <h1>سيكولوجية التغيير</h1>
-            <div class="accreditation-seal">معتمد وفق معايير ANSI/IACET</div>
-            <p style="font-size: 1.2rem; color: #64748b; margin-top: 20px;">دليل المادة العلمية الكامل - المستوى المتقدم (Level 7)</p>
-        </header>
-
-        <section id="sec1" class="module-section">
-            <h2>1. سيكولوجية المقاومة والجمود</h2>
-            <div class="scientific-text">
-                <b>التأصيل المعرفي:</b> لا يُعد "الجمود العقلي" مجرد تكاسل، بل هو آلية دفاعية متجذرة في <b>الجهاز الحوفي (Limbic System)</b>. الدماغ البشري مبرمج تطورياً للحفاظ على الطاقة وتجنب المجهول. 
-                <br><br>
-                عند مواجهة فكرة تغيير جذري، تُرسل <b>اللوزة الدماغية (Amygdala)</b> إشارات استغاثة كيميائية (كورتيزول)، مما يؤدي لشلل "القشرة المخية الحديثة" المسؤولة عن المنطق. في هذه الحالة، يتحول المتدرب لا إرادياً إلى حالة الدفاع، وهو ما نسميه تدريبياً بـ <b>"منطقة الراحة السامة"</b>.
+    <main class="main-stage">
+        <div class="ai-status-card">
+            <div style="font-size: 40px;">🤖</div>
+            <div>
+                <h3 style="margin:0; color:var(--gold);">المساعد الذكي للأكاديمية</h3>
+                <p style="margin:5px 0 0 0; opacity:0.7; font-size: 14px;">تم تحليل تقدمك: أنت مستعد للانتقال لمحور "إعادة الهيكلة المعرفية".</p>
             </div>
-            
+        </div>
 
-[Image of the limbic system in the human brain]
+        <h1>الحقيبة الحالية: سيكولوجية التغيير المتقدمة</h1>
+        
+        <div class="learning-node">
+            <span style="color:var(--gold); font-weight:bold;">النموذج العلمي: Neuro-Architecture</span>
+            <h2>تشريح استجابة الدماغ للتغيير</h2>
+            <p>في هذا الجزء، سنستخدم المحاكاة البصرية لرصد تدفق الكورتيزول في اللوزة الدماغية عند مواجهة التحديات الجديدة.</p>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
 
-        </section>
-
-        <section id="sec2" class="module-section">
-            <h2>2. تشريح عقلية النمو (Stanford Research)</h2>
-            <div class="scientific-text">
-                <b>المرونة العصبية (Neuroplasticity):</b> تكمن العبقرية في أبحاث جامعة ستانفورد في إثبات أن الروابط العصبية بين <b>العصبونات (Neurons)</b> ليست أسلاكاً جامدة، بل هي مسارات سائلة. 
-                <br><br>
-                <b>تأثير الميالين (Myelin):</b> الحقيبة التدريبية المعتمدة تركز على عملية "الميالينية". عندما يمارس المتدرب مهارة صعبة بوعي، تلتف مادة الميالين حول المحاور العصبية، مما يزيد من سرعة النبضة الكهربائية بمقدار <b>100 ضعف</b>. هذا هو التفسير العلمي لـ "الإتقان".
-            </div>
-            
-
-[Image of neuron with myelin sheath]
-
-            <div class="exercise-protocol">
-                <h3>🛠️ بروتوكول التدخل السيناريوهاتي:</h3>
-                <p>تحويل لغة الدماغ عبر استراتيجية <b>"المدى المفتوح"</b>. يتم استبدال عبارة (أنا لا أستطيع) ببروتوكول <b>"ليس بعد"</b>، مع ربطها بزيادة النشاط الكهربائي في الفص الجبهي.</p>
-            </div>
-        </section>
-
-        <section id="sec3" class="module-section">
-            <h2>3. بروتوكول تحييد الناقد (CBT Framework)</h2>
-            <div class="scientific-text">
-                تستخدم الأكاديمية هنا **العلاج المعرفي السلوكي** كأداة هندسية. المتدرب يتعلم كيفية رصد <b>"التشوهات المعرفية"</b> العشرة (مثل التفكير الكارثي، أو الشخصنة). 
-                <br><br>
-                <b>تقنية الفصل الإدراكي (Cognitive Defusion):</b> يتم تدريب المشاركين على رؤية أفكارهم كـ "أجسام خارجية". بدلاً من التماهي مع الفكرة ("أنا فاشل")، يتم تعليمهم بروتوكول الملاحظة ("أنا ألاحظ أن هناك فكرة فشل تمر الآن"). هذا الفصل يفرغ الفكرة من شحنتها الانفعالية.
-            </div>
-            <div class="case-study">
-                <b>دراسة حالة:</b> موظف تنفيذي تعرض لنقد حاد. تطبيق نموذج (ABCDE) الموسع لتحويل الانهيار العصبي إلى خطة تحسين إجرائية في أقل من 10 دقائق.
-            </div>
-        </section>
-
-        <section id="sec4" class="reference-list">
-            <h3>المراجع العلمية المعتمدة في الحقيبة:</h3>
-            <ul>
-                <li>Dweck, C. S. (2006). Mindset: The New Psychology of Success. Random House.</li>
-                <li>Beck, J. S. (2011). Cognitive Behavior Therapy: Basics and Beyond. Guilford Press.</li>
-                <li>Eagleman, D. (2020). Livewired: The Inside Story of the Ever-Changing Brain.</li>
-            </ul>
-        </section>
+        <div id="user-content-area">
+            <p style="border: 1px dashed #444; padding: 20px; text-align: center; color: #888;">
+                [ بانتظار إرفاق حقائبكِ لتمثيلها برمجياً هنا ]
+            </p>
+        </div>
     </main>
 
-    <script>
-        function scrollToId(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // نظام النطق الأكاديمي
-        function speak(text) {
-            const synth = window.speechSynthesis;
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'ar-SA';
-            synth.speak(utter);
-        }
-    </script>
 </body>
 </html>
