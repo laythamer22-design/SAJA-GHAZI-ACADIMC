@@ -3,314 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية هدير الأسدي | منصة المناهج المعتمدة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <title>أكاديمية هدير الأسدي | الموسوعة التدريبية العالمية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-navy: #0f172a;
-            --royal-gold: #b59410;
-            --soft-gold: #e2c25d;
-            --off-white: #f8fafc;
-            --pure-white: #ffffff;
-            --accent-blue: #3b82f6;
-            --text-dark: #1e293b;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --navy-deep: #0a0f1d;
+            --gold-royal: #b59410;
+            --gold-light: #e2c25d;
+            --text-silver: #e2e8f0;
+            --white: #ffffff;
+            --bg-body: #f4f7f9;
         }
 
-        body {
-            font-family: 'Cairo', sans-serif;
-            margin: 0;
-            background: var(--off-white);
-            color: var(--text-dark);
-            overflow-x: hidden;
+        body { font-family: 'Cairo', sans-serif; margin: 0; background: var(--bg-body); color: var(--navy-deep); overflow-x: hidden; }
+
+        /* Navigation Sidebar */
+        .sidebar {
+            position: fixed; right: 0; top: 0; width: 300px; height: 100vh;
+            background: var(--navy-deep); color: var(--white); padding: 40px 20px;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.2); overflow-y: auto; z-index: 1000;
         }
+        .sidebar h2 { font-family: 'Amiri', serif; color: var(--gold-royal); font-size: 2.2rem; border-bottom: 1px solid var(--gold-royal); padding-bottom: 10px; }
+        .nav-item { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.3s; font-size: 0.95rem; }
+        .nav-item:hover { background: rgba(181, 148, 16, 0.15); color: var(--gold-light); }
 
-        /* شاشة الترحيب والتحميل */
-        #splash-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--primary-navy); display: flex; flex-direction: column;
-            justify-content: center; align-items: center; z-index: 10000; color: var(--royal-gold);
-        }
-        .loader-bar { width: 200px; height: 2px; background: rgba(255,255,255,0.1); margin-top: 20px; position: relative; overflow: hidden; }
-        .loader-progress { width: 0%; height: 100%; background: var(--royal-gold); position: absolute; animation: load 2s forwards; }
-        @keyframes load { to { width: 100%; } }
+        /* Main Content Area */
+        .main-content { margin-right: 340px; padding: 60px; max-width: 1000px; }
 
-        /* الأنظمة العامة */
-        .view { display: none; min-height: 100vh; animation: fadeIn 0.8s forwards; }
-        .active { display: block !important; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Academic Header */
+        .encyclopedia-header { border-bottom: 4px solid var(--gold-royal); margin-bottom: 50px; padding-bottom: 20px; }
+        .encyclopedia-header h1 { font-family: 'Amiri', serif; font-size: 3.5rem; margin: 0; color: var(--navy-deep); }
+        .accreditation-seal { display: inline-block; padding: 8px 15px; border: 1px solid var(--gold-royal); color: var(--gold-royal); font-weight: bold; border-radius: 4px; margin-top: 10px; }
 
-        /* واجهة الهبوط */
-        .hero-section {
-            height: 100vh;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.8) 100%),
-                        url('https://images.unsplash.com/photo-1454165833767-027ffea9e778?q=80&w=1600') center/cover;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;
-            padding: 0 20px;
-        }
-        .hero-section h1 { font-family: 'Amiri', serif; font-size: clamp(3rem, 10vw, 5.5rem); color: var(--royal-gold); margin-bottom: 10px; }
-        .hero-section p { font-size: 1.4rem; max-width: 800px; font-weight: 300; line-height: 1.8; margin-bottom: 40px; }
-
-        .btn-premium {
-            background: var(--royal-gold); color: white; padding: 20px 50px; border: none;
-            border-radius: 4px; font-weight: 900; font-size: 1.2rem; cursor: pointer;
-            transition: var(--transition); text-transform: uppercase; letter-spacing: 1px;
-            box-shadow: 0 15px 30px rgba(181, 148, 16, 0.2);
-        }
-        .btn-premium:hover { background: var(--white); color: var(--primary-navy); transform: translateY(-5px); }
-
-        /* نظام إدارة الحقائب (Catalog) */
-        .catalog-container { max-width: 1400px; margin: auto; padding: 80px 20px; }
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; }
-        .curriculum-card {
-            background: var(--pure-white); border-radius: 12px; overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.03); border: 1px solid #eef2f7; transition: var(--transition);
-        }
-        .curriculum-card:hover { transform: scale(1.02); border-color: var(--royal-gold); }
-        .card-header { height: 10px; background: var(--royal-gold); }
-        .card-content { padding: 40px; }
-        .card-content h3 { font-size: 1.8rem; margin: 0 0 15px 0; color: var(--primary-navy); }
-        .card-content .tags { margin-bottom: 20px; display: flex; gap: 10px; }
-        .tag { background: #f1f5f9; padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; color: var(--primary-navy); border: 1px solid #e2e8f0; }
-
-        /* نظام الـ LMS المتطور */
-        .lms-wrapper { display: grid; grid-template-columns: 380px 1fr; height: 100vh; background: var(--pure-white); }
-        .lms-sidebar { background: var(--primary-navy); color: white; display: flex; flex-direction: column; overflow-y: auto; }
-        .lms-sidebar-header { padding: 40px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .lms-sidebar-header h2 { font-family: 'Amiri', serif; color: var(--royal-gold); font-size: 2.2rem; margin: 0; }
+        /* Content Sections */
+        .module-section { background: var(--white); padding: 50px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 60px; }
+        .module-section h2 { color: var(--gold-royal); font-size: 2.2rem; margin-bottom: 30px; border-right: 6px solid var(--navy-deep); padding-right: 20px; }
         
-        .lesson-nav { list-style: none; padding: 20px; margin: 0; }
-        .lesson-nav-item {
-            padding: 20px; margin-bottom: 10px; border-radius: 8px; cursor: pointer;
-            background: rgba(255,255,255,0.03); transition: 0.3s; border-right: 4px solid transparent;
-        }
-        .lesson-nav-item:hover { background: rgba(181, 148, 16, 0.1); }
-        .lesson-nav-item.active-item { background: var(--royal-gold); color: white; border-right-color: var(--white); }
+        .scientific-text { font-size: 1.25rem; line-height: 2.2; color: #334155; text-align: justify; }
+        .scientific-text b { color: var(--navy-deep); }
 
-        .lms-body { overflow-y: auto; padding: 80px; position: relative; background: #fff; }
+        /* Specialized Boxes */
+        .case-study { background: #f0f7ff; border-right: 5px solid #3b82f6; padding: 30px; margin: 30px 0; border-radius: 0 10px 10px 0; }
+        .exercise-protocol { background: #fffbeb; border: 2px dashed var(--gold-royal); padding: 30px; margin-top: 40px; }
         
-        /* تنسيق المنهج العلمي المعتمد */
-        .academic-content { max-width: 900px; margin: auto; }
-        .module-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; border-bottom: 2px solid #f1f5f9; padding-bottom: 20px; }
-        .module-id { color: var(--royal-gold); font-weight: 900; font-size: 1.2rem; }
-        
-        .academic-section { margin-bottom: 60px; }
-        .academic-section h2 { font-size: 2.4rem; color: var(--primary-navy); margin-bottom: 25px; }
-        .academic-section h3 { font-size: 1.6rem; color: var(--royal-gold); margin-top: 40px; }
-        
-        .theory-box {
-            background: #fdfbf5; border-right: 6px solid var(--royal-gold);
-            padding: 35px; border-radius: 0 12px 12px 0; font-size: 1.15rem;
-            line-height: 2; color: #334155; margin: 25px 0;
-        }
-        .theory-box b { color: var(--primary-navy); }
+        .reference-list { margin-top: 50px; font-size: 0.85rem; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 20px; }
 
-        .activity-card {
-            background: #f0f7ff; border: 1px solid #dbeafe; padding: 30px;
-            border-radius: 12px; margin-top: 30px;
-        }
-        .activity-card h4 { margin: 0 0 15px 0; color: var(--accent-blue); display: flex; align-items: center; gap: 10px; }
-
-        .back-nav { position: fixed; top: 20px; left: 20px; background: var(--primary-navy); color: var(--royal-gold); padding: 10px 20px; border-radius: 5px; cursor: pointer; z-index: 100; font-weight: bold; }
-
-        @media (max-width: 1100px) { .lms-wrapper { grid-template-columns: 1fr; } .lms-sidebar { display: none; } }
+        /* Audio Controls */
+        .audio-btn { background: var(--gold-royal); color: white; border: none; padding: 10px 20px; border-radius: 50px; cursor: pointer; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
-    <div id="splash-screen">
-        <h1 style="font-family: 'Amiri'; font-size: 3.5rem;">أكاديمية هدير الأسدي</h1>
-        <div class="loader-bar"><div class="loader-progress"></div></div>
-        <p style="margin-top: 20px; letter-spacing: 2px; font-size: 0.8rem; opacity: 0.6;">المنصة العالمية للمناهج المعتمدة</p>
-    </div>
+    <aside class="sidebar">
+        <h2>هدير الأسدي</h2>
+        <p style="opacity: 0.6; font-size: 0.8rem;">نظام إدارة المناهج v3.0</p>
+        <div class="nav-item" onclick="scrollToId('sec1')">1. سيكولوجية المقاومة</div>
+        <div class="nav-item" onclick="scrollToId('sec2')">2. تشريح عقلية النمو (Stanford)</div>
+        <div class="nav-item" onclick="scrollToId('sec3')">3. بروتوكول تحييد الناقد (CBT)</div>
+        <div class="nav-item" onclick="scrollToId('sec4')">4. المراجع والمعايير الدولية</div>
+    </aside>
 
-    <section id="home" class="view">
-        <div class="hero-section">
-            <h1>هدير الأسدي</h1>
-            <p>نحن نعيد صياغة المستقبل التدريبي من خلال مناهج أكاديمية رصينة، مبنية على أحدث أبحاث علوم الأعصاب وسيكولوجية الإنجاز العالمية.</p>
-            <button class="btn-premium" onclick="navigateTo('catalog')">دخول ممرات التدريب</button>
-        </div>
-    </section>
+    <main class="main-content">
+        <header class="encyclopedia-header">
+            <h1>سيكولوجية التغيير</h1>
+            <div class="accreditation-seal">معتمد وفق معايير ANSI/IACET</div>
+            <p style="font-size: 1.2rem; color: #64748b; margin-top: 20px;">دليل المادة العلمية الكامل - المستوى المتقدم (Level 7)</p>
+        </header>
 
-    <section id="catalog" class="view">
-        <div class="catalog-container">
-            <div style="text-align: center; margin-bottom: 80px;">
-                <h2 style="font-family: 'Amiri', serif; font-size: 3.5rem; color: var(--primary-navy);">الحقائب التدريبية المعتمدة</h2>
-                <div style="width: 80px; height: 4px; background: var(--royal-gold); margin: 20px auto;"></div>
+        <section id="sec1" class="module-section">
+            <h2>1. سيكولوجية المقاومة والجمود</h2>
+            <div class="scientific-text">
+                <b>التأصيل المعرفي:</b> لا يُعد "الجمود العقلي" مجرد تكاسل، بل هو آلية دفاعية متجذرة في <b>الجهاز الحوفي (Limbic System)</b>. الدماغ البشري مبرمج تطورياً للحفاظ على الطاقة وتجنب المجهول. 
+                <br><br>
+                عند مواجهة فكرة تغيير جذري، تُرسل <b>اللوزة الدماغية (Amygdala)</b> إشارات استغاثة كيميائية (كورتيزول)، مما يؤدي لشلل "القشرة المخية الحديثة" المسؤولة عن المنطق. في هذه الحالة، يتحول المتدرب لا إرادياً إلى حالة الدفاع، وهو ما نسميه تدريبياً بـ <b>"منطقة الراحة السامة"</b>.
             </div>
             
-            <div class="grid-layout">
-                <div class="curriculum-card" onclick="openLMS('u1')">
-                    <div class="card-header"></div>
-                    <div class="card-content">
-                        <div class="tags"><span class="tag">منهج Stanford</span> <span class="tag">4 ساعات</span></div>
-                        <h3>سيكولوجية التغيير وهندسة العقلية</h3>
-                        <p>منهج علمي متقدم يستهدف تفكيك الأنماط الذهنية المعيقة وبناء مسارات عصبية جديدة للنمو.</p>
-                        <div style="margin-top: 25px; color: var(--royal-gold); font-weight: 900;">ابدأ البرنامج ⬅</div>
-                    </div>
-                </div>
 
-                <div class="curriculum-card" onclick="openLMS('u2')">
-                    <div class="card-header"></div>
-                    <div class="card-content">
-                        <div class="tags"><span class="tag">معيار Goleman</span> <span class="tag">8 ساعات</span></div>
-                        <h3>إدارة الذات والذكاء العاطفي</h3>
-                        <p>برنامج استراتيجي للسيطرة على الاستجابات الانفعالية وتطوير الصمود النفسي في بيئات العمل المشحونة.</p>
-                        <div style="margin-top: 25px; color: var(--royal-gold); font-weight: 900;">ابدأ البرنامج ⬅</div>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 60px;">
-                <button class="btn-premium" style="background: var(--primary-navy);" onclick="navigateTo('home')">العودة للرئيسية</button>
-            </div>
-        </div>
-    </section>
+[Image of the limbic system in the human brain]
 
-    <section id="lms" class="view">
-        <div class="back-nav" onclick="navigateTo('catalog')">⬅ قائمة المناهج</div>
-        <div class="lms-wrapper">
-            <aside class="lms-sidebar">
-                <div class="lms-sidebar-header">
-                    <h2 id="lms-title">المنهج العلمي</h2>
-                </div>
-                <ul class="lesson-nav" id="lms-nav-list">
-                    </ul>
-            </aside>
-            <main class="lms-body">
-                <div id="lms-content-area" class="academic-content">
-                    </div>
-            </main>
-        </div>
-    </section>
+        </section>
+
+        <section id="sec2" class="module-section">
+            <h2>2. تشريح عقلية النمو (Stanford Research)</h2>
+            <div class="scientific-text">
+                <b>المرونة العصبية (Neuroplasticity):</b> تكمن العبقرية في أبحاث جامعة ستانفورد في إثبات أن الروابط العصبية بين <b>العصبونات (Neurons)</b> ليست أسلاكاً جامدة، بل هي مسارات سائلة. 
+                <br><br>
+                <b>تأثير الميالين (Myelin):</b> الحقيبة التدريبية المعتمدة تركز على عملية "الميالينية". عندما يمارس المتدرب مهارة صعبة بوعي، تلتف مادة الميالين حول المحاور العصبية، مما يزيد من سرعة النبضة الكهربائية بمقدار <b>100 ضعف</b>. هذا هو التفسير العلمي لـ "الإتقان".
+            </div>
+            
+
+[Image of neuron with myelin sheath]
+
+            <div class="exercise-protocol">
+                <h3>🛠️ بروتوكول التدخل السيناريوهاتي:</h3>
+                <p>تحويل لغة الدماغ عبر استراتيجية <b>"المدى المفتوح"</b>. يتم استبدال عبارة (أنا لا أستطيع) ببروتوكول <b>"ليس بعد"</b>، مع ربطها بزيادة النشاط الكهربائي في الفص الجبهي.</p>
+            </div>
+        </section>
+
+        <section id="sec3" class="module-section">
+            <h2>3. بروتوكول تحييد الناقد (CBT Framework)</h2>
+            <div class="scientific-text">
+                تستخدم الأكاديمية هنا **العلاج المعرفي السلوكي** كأداة هندسية. المتدرب يتعلم كيفية رصد <b>"التشوهات المعرفية"</b> العشرة (مثل التفكير الكارثي، أو الشخصنة). 
+                <br><br>
+                <b>تقنية الفصل الإدراكي (Cognitive Defusion):</b> يتم تدريب المشاركين على رؤية أفكارهم كـ "أجسام خارجية". بدلاً من التماهي مع الفكرة ("أنا فاشل")، يتم تعليمهم بروتوكول الملاحظة ("أنا ألاحظ أن هناك فكرة فشل تمر الآن"). هذا الفصل يفرغ الفكرة من شحنتها الانفعالية.
+            </div>
+            <div class="case-study">
+                <b>دراسة حالة:</b> موظف تنفيذي تعرض لنقد حاد. تطبيق نموذج (ABCDE) الموسع لتحويل الانهيار العصبي إلى خطة تحسين إجرائية في أقل من 10 دقائق.
+            </div>
+        </section>
+
+        <section id="sec4" class="reference-list">
+            <h3>المراجع العلمية المعتمدة في الحقيبة:</h3>
+            <ul>
+                <li>Dweck, C. S. (2006). Mindset: The New Psychology of Success. Random House.</li>
+                <li>Beck, J. S. (2011). Cognitive Behavior Therapy: Basics and Beyond. Guilford Press.</li>
+                <li>Eagleman, D. (2020). Livewired: The Inside Story of the Ever-Changing Brain.</li>
+            </ul>
+        </section>
+    </main>
 
     <script>
-        const curriculumDatabase = {
-            u1: {
-                title: "سيكولوجية التغيير",
-                modules: [
-                    {
-                        id: "MOD-01",
-                        title: "هندسة العقلية (Neuro-Mindset)",
-                        content: `
-                            <div class="module-meta">
-                                <span class="module-id">ID: STANFORD-GROWTH-01</span>
-                                <span class="tag">ساعتان تدريبيتان</span>
-                            </div>
-                            <div class="academic-section">
-                                <h2>1. هندسة العقلية واللدونة العصبية</h2>
-                                <div class="theory-box">
-                                    <b>الأساس العلمي:</b> يرتكز هذا المحور على أبحاث الدكتورة <b>كارول دويك</b> من جامعة ستانفورد. 
-                                    الهدف هو الانتقال بالمتدرب من "العقلية الثابتة" (Fixed Mindset) التي ترى القدرات كسمات وراثية، 
-                                    إلى "عقلية النمو" (Growth Mindset).
-                                    <br><br>
-                                    <b>بيولوجيا التغيير:</b> يتم شرح مفهوم <b>Neuroplasticity</b>، حيث نثبت للمتدرب بالدليل العلمي 
-                                    أن الدماغ يقوم بإعادة تشكيل روابطه العصبية عند مواجهة التحديات، مما يعني أن "الذكاء" عضلة مرنة وليس قدراً ثابتاً.
-                                </div>
-                                
-                                <h3>استراتيجية "قوة ليس بعد" (The Power of Yet)</h3>
-                                <p>هي بروتوكول لغوي عصبي يعيد برمجة رد فعل الفص الجبهي تجاه الفشل. بدلاً من اعتبار العثرة نهاية للمسار، يتم وضعها كـ "نقطة في منتصف الطريق".</p>
-                                
-                                <div class="activity-card">
-                                    <h4>📝 نشاط تطبيق المعايير (Lab 1.1)</h4>
-                                    <p>تحليل 3 مواقف مهنية سابقة تم التخلي عنها بسبب "الخوف من ضعف الكفاءة". إعادة تقييمها وفق مصفوفة الجهد الموجه، ووضع خطة (Micro-Learning) لكل منها.</p>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        id: "MOD-02",
-                        title: "استئصال النقد الذاتي (CBT)",
-                        content: `
-                            <div class="module-meta">
-                                <span class="module-id">ID: CBT-FRAMEWORK-02</span>
-                                <span class="tag">ساعتان تدريبيتان</span>
-                            </div>
-                            <div class="academic-section">
-                                <h2>2. تحييد المعيقات المعرفية (CBT Protocol)</h2>
-                                <div class="theory-box">
-                                    <b>الأساس العلمي:</b> تطبيق أدوات العلاج المعرفي السلوكي (CBT) لتفكيك الحوار الذاتي السلبي. 
-                                    نركز هنا على <b>"التشوهات المعرفية"</b> التي تسبب الشلل الإبداعي والاحتراق المهني.
-                                </div>
-                                
-                                <h3>تقنية الفصل المعرفي (Cognitive Defusion)</h3>
-                                <p>تعلم المتدرب أن الأفكار السلبية هي "أحداث عابرة" وليست "حقائق موضوعية". 
-                                تسمية الشعور (Labeling) تساهم في تقليل نشاط اللوزة الدماغية (Amygdala) بنسبة تصل إلى 40% عند التعرض لضغوط نقدية.</p>
-
-                                <div class="activity-card">
-                                    <h4>🔥 تمرين الصمود السلوكي</h4>
-                                    <p>بناء "سجل الأفكار الثلاثي" المعتمد عالمياً: (رصد الفكرة التلقائية -> فحص الدليل الموضوعي -> صياغة البديل الوظيفي).</p>
-                                </div>
-                            </div>
-                        `
-                    }
-                ]
-            },
-            u2: {
-                title: "إدارة الذات والذكاء العاطفي",
-                modules: [
-                    {
-                        id: "MOD-03",
-                        title: "الوعي الذاتي الراديكالي",
-                        content: `
-                            <div class="module-meta">
-                                <span class="module-id">ID: EQ-GOLEMAN-01</span>
-                                <span class="tag">4 ساعات</span>
-                            </div>
-                            <div class="academic-section">
-                                <h2>1. ميكانيكا الذكاء العاطفي</h2>
-                                <div class="theory-box">
-                                    <b>الأساس العلمي:</b> يعتمد المنهج على نموذج <b>Daniel Goleman</b>. 
-                                    نبدأ بـ "الدقة العاطفية" (Emotional Granularity)، حيث ثبت أن المتدرب الذي يحدد مشاعره بدقة، 
-                                    يمتلك قدرة أعلى على إدارة ضغوط العمل بنسبة 60%.
-                                </div>
-                                <h3>الاختطاف العاطفي (Amygdala Hijack)</h3>
-                                <p>شرح ميكانيكي لكيفية فقدان السيطرة المنطقية تحت الضغط، وكيفية استخدام "الفواصل الزمنية" لاستعادة نشاط العقل التحليلي.</p>
-                            </div>
-                        `
-                    }
-                ]
-            }
-        };
-
-        function navigateTo(viewId) {
-            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            document.getElementById(viewId).classList.add('active');
-            window.scrollTo(0,0);
+        function scrollToId(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
-        function openLMS(unitKey) {
-            const unit = curriculumDatabase[unitKey];
-            document.getElementById('lms-title').innerText = unit.title;
-            const navList = document.getElementById('lms-nav-list');
-            navList.innerHTML = "";
-
-            unit.modules.forEach((mod, idx) => {
-                const li = document.createElement('li');
-                li.className = "lesson-nav-item";
-                li.innerHTML = `<strong>${mod.id}:</strong> ${mod.title}`;
-                li.onclick = () => {
-                    document.getElementById('lms-content-area').innerHTML = mod.content;
-                    document.querySelectorAll('.lesson-nav-item').forEach(i => i.classList.remove('active-item'));
-                    li.classList.add('active-item');
-                };
-                navList.appendChild(li);
-            });
-
-            // تحميل أول مديول تلقائياً
-            navList.firstChild.click();
-            navigateTo('lms');
+        // نظام النطق الأكاديمي
+        function speak(text) {
+            const synth = window.speechSynthesis;
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'ar-SA';
+            synth.speak(utter);
         }
-
-        // إخفاء الـ Splash Screen بعد التحميل
-        window.onload = () => {
-            setTimeout(() => {
-                document.getElementById('splash-screen').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('splash-screen').style.display = 'none';
-                    navigateTo('home');
-                }, 800);
-            }, 2500);
-        };
     </script>
 </body>
 </html>
