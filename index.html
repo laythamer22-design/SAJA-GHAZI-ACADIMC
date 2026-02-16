@@ -3,163 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية سجى غازي | الدورة التأسيسية المكثفة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@300;500;800&display=swap" rel="stylesheet">
+    <title>أكاديمية هدير الأسدي | للتدريب والتطوير الشامل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #0a2616; --gold: #c5a059; --accent: #d4af37; --bg: #fdfdfd; }
-        body { font-family: 'Tajawal', sans-serif; margin: 0; background: var(--bg); color: var(--primary); }
-        
-        /* الهيدر الاحترافي */
-        header { background: var(--primary); color: var(--gold); padding: 20px; text-align: center; border-bottom: 5px solid var(--gold); }
-        
-        .container { max-width: 1200px; margin: auto; padding: 20px; display: grid; grid-template-columns: 350px 1fr; gap: 30px; }
+        :root {
+            --brand-main: #1a1a2e; /* كحلي ملكي */
+            --brand-gold: #c5a059; /* ذهبي مطفي */
+            --brand-light: #f4f4f9;
+            --white: #ffffff;
+        }
 
-        /* قائمة الجلسات التدريبية (الخطة الزمنية) */
-        .curriculum-sidebar { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); height: fit-content; }
-        .session-link { padding: 15px; margin-bottom: 10px; border: 1px solid #eee; border-radius: 10px; cursor: pointer; transition: 0.3s; display: flex; justify-content: space-between; align-items: center; }
-        .session-link:hover, .session-link.active { background: var(--primary); color: var(--gold); border-color: var(--primary); }
-        .time-tag { font-size: 0.8rem; background: var(--gold); color: var(--primary); padding: 2px 8px; border-radius: 5px; font-weight: bold; }
+        body { font-family: 'Cairo', sans-serif; margin: 0; background: var(--brand-light); color: var(--brand-main); overflow-x: hidden; }
 
-        /* منطقة المحتوى التدريبي */
-        .training-area { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); min-height: 600px; }
-        .ai-tutor { background: #f0f7f2; border-right: 5px solid var(--primary); padding: 20px; border-radius: 5px; margin-bottom: 30px; line-height: 1.8; }
-        
-        /* مختبر النطق */
-        .alphabet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 15px; margin-top: 20px; }
-        .char-card { background: var(--bg); border: 2px solid #eee; padding: 20px; text-align: center; font-size: 2rem; font-family: 'Amiri', serif; border-radius: 10px; cursor: pointer; transition: 0.2s; }
-        .char-card:hover { border-color: var(--gold); background: #fffdf5; transform: translateY(-5px); }
+        /* الشاشة الافتتاحية */
+        .page { display: none; min-height: 100vh; animation: fadeIn 0.6s ease-in-out; }
+        .active { display: block !important; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .btn-action { background: var(--gold); color: var(--primary); padding: 15px 30px; border: none; border-radius: 5px; font-weight: 800; cursor: pointer; margin-top: 20px; }
+        /* الهيدر الفخم */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.9)), 
+                        url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1500') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white);
+        }
+
+        .hero h1 { font-size: 4.5rem; margin: 0; font-weight: 900; color: var(--brand-gold); }
+        .hero p { font-size: 1.5rem; max-width: 800px; margin: 20px 0; font-weight: 300; }
+
+        /* الأزرار */
+        .btn-prime {
+            background: var(--brand-gold); color: var(--brand-main);
+            padding: 18px 50px; border: none; border-radius: 4px;
+            font-size: 1.2rem; font-weight: bold; cursor: pointer;
+            transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .btn-prime:hover { background: var(--white); transform: translateY(-3px); }
+
+        /* شبكة التصنيفات التدريبية */
+        .categories-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; padding: 50px; max-width: 1200px; margin: auto;
+        }
+
+        .cat-card {
+            background: var(--white); border-radius: 12px; padding: 40px;
+            text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-bottom: 5px solid var(--brand-gold); transition: 0.4s;
+        }
+        .cat-card:hover { transform: translateY(-10px); }
+        .cat-card i { font-size: 3rem; color: var(--brand-gold); margin-bottom: 20px; display: block; }
+        .cat-card h3 { font-size: 1.8rem; margin: 10px 0; }
+
+        /* لوحة التحكم بالتدريب */
+        .training-container { display: grid; grid-template-columns: 300px 1fr; gap: 20px; padding: 20px; }
+        .sidebar { background: var(--brand-main); color: var(--white); border-radius: 15px; padding: 25px; }
+        .content-box { background: var(--white); border-radius: 15px; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
     </style>
 </head>
 <body>
 
-<header>
-    <h1>أكاديمية سجى غازي - المرحلة التأسيسية</h1>
-    <p>برنامج تدريبي مكثف (8 ساعات) | من الحرف إلى الرسم الإملائي</p>
-</header>
+    <section id="welcome" class="page active">
+        <div class="hero">
+            <h1>أكاديمية هدير الأسدي</h1>
+            <p>منصة التطوير الرائدة لبناء المهارات، القيادة، والابتكار الشخصي والمؤسسي</p>
+            <button class="btn-prime" onclick="showPage('catalog')">استعراض المسارات التدريبية</button>
+        </div>
+    </section>
 
-<div class="container">
-    <div class="curriculum-sidebar">
-        <h3 style="border-bottom: 2px solid var(--gold); padding-bottom: 10px;">خطة الـ 8 ساعات</h3>
-        
-        <div class="session-link active" onclick="loadSession(1)">
-            <span>الجلسة 1: مخارج الحروف</span>
-            <span class="time-tag">ساعتان</span>
+    <section id="catalog" class="page">
+        <div style="text-align: center; padding: 60px 20px;">
+            <h2 style="font-size: 2.5rem;">بوابتك نحو التميز</h2>
+            <p>اختر المسار الذي يناسب طموحاتك المهنية والشخصية</p>
         </div>
-        
-        <div class="session-link" onclick="loadSession(2)">
-            <span>الجلسة 2: الصفات والحركات</span>
-            <span class="time-tag">ساعتان</span>
-        </div>
-        
-        <div class="session-link" onclick="loadSession(3)">
-            <span>الجلسة 3: المدود والتنوين</span>
-            <span class="time-tag">ساعتان</span>
-        </div>
-        
-        <div class="session-link" onclick="loadSession(4)">
-            <span>الجلسة 4: الرسم الإملائي</span>
-            <span class="time-tag">ساعتان</span>
-        </div>
-    </div>
 
-    <div class="training-area" id="trainingArea">
-        </div>
-</div>
+        <div class="categories-grid">
+            <div class="cat-card" onclick="startTraining('Leadership')">
+                <span>🏆</span>
+                <h3>القيادة والإدارة</h3>
+                <p>صناعة القادة وتطوير فرق العمل الذكية.</p>
+                <button class="btn-prime" style="padding: 10px 20px; font-size: 0.9rem;">دخول المسار</button>
+            </div>
 
-<script>
-    const trainingSessions = {
-        1: {
-            title: "الجلسة الأولى: فلسفة مخارج الحروف (ساعتان)",
-            desc: "في هذه الجلسة، سنتدرب على استخراج الحرف من منبعه الأصلي. سنقسم الحروف حسب مخارجها (الحلق، اللسان، الشفتان، الخيشوم).",
-            ai: "أهلاً بك في أول ساعتين تدريبيتين. ركز في جرس الحرف وصداه. سنبدأ بحروف الحلق الشجرية.",
-            content: `
-                <h3>مختبر مخارج الحروف التفاعلي</h3>
-                <p>اضغط على كل مجموعة لتتعلم كيفية نطقها بشكل أكاديمي رصين:</p>
-                <div class="alphabet-grid">
-                    <div class="char-card" onclick="speak('أ - هـ. حروف الحلق أقصى الحلق')">أ - هـ</div>
-                    <div class="char-card" onclick="speak('ع - ح. حروف وسط الحلق')">ع - ح</div>
-                    <div class="char-card" onclick="speak('غ - خ. حروف أدنى الحلق')">غ - خ</div>
-                    <div class="char-card" onclick="speak('ق - ك. حروف أقصى اللسان')">ق - ك</div>
+            <div class="cat-card" onclick="startTraining('SelfDev')">
+                <span>🚀</span>
+                <h3>التطوير الذاتي</h3>
+                <p>تعزيز الثقة، إدارة الوقت، والذكاء العاطفي.</p>
+                <button class="btn-prime" style="padding: 10px 20px; font-size: 0.9rem;">دخول المسار</button>
+            </div>
+
+            <div class="cat-card" onclick="startTraining('Skills')">
+                <span>💡</span>
+                <h3>المهارات المهنية</h3>
+                <p>إدارة المشاريع، المهارات التقنية، والتخطيط الاستراتيجي.</p>
+                <button class="btn-prime" style="padding: 10px 20px; font-size: 0.9rem;">دخول المسار</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="training-zone" class="page">
+        <div class="training-container">
+            <div class="sidebar">
+                <h2 style="color: var(--brand-gold);">هدير الأسدي</h2>
+                <p>مدربك الافتراضي الشخصي</p>
+                <hr style="opacity: 0.2;">
+                <nav>
+                    <p style="cursor:pointer" onclick="showPage('catalog')">🏠 العودة للرئيسية</p>
+                    <p>📊 تقدمك: 15%</p>
+                    <p>📜 الشهادات المتاحة</p>
+                </nav>
+            </div>
+            <div class="content-box">
+                <h2 id="module-title" style="color: var(--brand-main);">اسم البرنامج التدريبي</h2>
+                <div id="ai-instructor" style="background: #eef2ff; padding: 20px; border-radius: 10px; border-right: 5px solid var(--brand-gold); margin-bottom: 30px;">
+                    🤖 <strong>المساعد الذكي:</strong> "أهلاً بك في أكاديمية هدير الأسدي. سنبدأ اليوم رحلة تحويل أهدافك إلى واقع ملموس."
                 </div>
-                <div class="ai-tutor" style="margin-top:20px;">
-                    💡 <strong>توجيه المدرب:</strong> تدرب على نطق (أَ) بوضوح دون قلقلة، ثم انتقل لـ (هـ) مع جريان الهواء.
-                </div>
-            `
-        },
-        2: {
-            title: "الجلسة الثانية: الحركات والصفات (ساعتان)",
-            desc: "دراسة عميقة لزمن الحركة (الفتحة، الضمة، الكسرة) وصفات الحروف (الهمس، الجهر، الاستعلاء).",
-            ai: "الآن ننتقل لضبط ميزان الحركة. الفتحة نصف ألف، والضمة نصف واو، والكسرة نصف ياء.",
-            content: `
-                <h3>تطبيق زمن الحركات</h3>
-                <div class="alphabet-grid">
-                    <div class="char-card" onclick="speak('بَ - بِي - بُو. ميزان الحركة المتساوي')">بَ بِي بُو</div>
-                    <div class="char-card" onclick="speak('تَ - تِي - تُو')">تَ تِي تُو</div>
-                </div>
-                <p><strong>تمرين الصفات:</strong> استمع للفرق بين السين المهموسة والصاد المستعلية:</p>
-                <button class="btn-action" onclick="speak('سَ - صَ. اسمع حدة السين وتفخيم الصاد')">مقارنة السين والصاد</button>
-            `
-        },
-        3: {
-            title: "الجلسة الثالثة: المدود والتنوين (ساعتان)",
-            desc: "إتقان أزمنة المد الطبيعي والفرعي، والتمييز بين النون الملفوظة والمكتوبة.",
-            ai: "هذه الساعات مخصصة لضبط إيقاع الكلام. المد هو روح اللغة، والتنوين هو جرسها الموسيقي.",
-            content: `
-                <h3>منصة إيقاع المدود</h3>
-                <div class="alphabet-grid">
-                    <div class="char-card" onclick="speak('باااا - بوووو - بيييي. زمن حركتين')">بَا بُو بِي</div>
-                </div>
-                <h3 style="margin-top:20px;">مختبر التنوين</h3>
-                <div class="alphabet-grid">
-                    <div class="char-card" onclick="speak('بٌ - بٍ - بً. صوت الجرس النوني')">بٌ بٍ بً</div>
-                </div>
-            `
-        },
-        4: {
-            title: "الجلسة الرابعة: الرسم الإملائي التأسيسي (ساعتان)",
-            desc: "قواعد كتابة ما ينطق، والفرق بين التاء المربوطة والمبسوطة، وكراسي الهمزة.",
-            ai: "في الساعتين الأخيرتين، سنحول الصوت إلى صورة. كيف نرسم الكلمة دون خطأ واحد؟",
-            content: `
-                <h3>تحدي الإملاء البصري</h3>
-                <div class="ai-tutor">
-                    قاعدة ذهبية: التاء المربوطة تنطق (هاء) عند الوقف، والمبسوطة تبقى (تاء).
-                </div>
-                <button class="btn-action" onclick="speak('مدرسة. مدرسة. سمعت الهاء؟ إذن هي مربوطة. بيت. بيت. بقيت تاء؟ إذن هي مبسوطة')">تجربة القاعدة صوتاً</button>
-            `
+                <div id="learning-content">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo(0,0);
         }
-    };
 
-    function loadSession(id) {
-        const session = trainingSessions[id];
-        // تحديث القائمة الجانبية
-        document.querySelectorAll('.session-link').forEach(el => el.classList.remove('active'));
-        event.currentTarget.classList.add('active');
+        function startTraining(type) {
+            const title = document.getElementById('module-title');
+            const content = document.getElementById('learning-content');
+            showPage('training-zone');
 
-        // تحديث المحتوى
-        const area = document.getElementById('trainingArea');
-        area.innerHTML = `
-            <h2 style="color:var(--gold); font-family:'Amiri'; font-size:2.5rem;">${session.title}</h2>
-            <p style="font-size:1.2rem; color:#666;">${session.desc}</p>
-            <div class="ai-tutor">🤖 <strong>المعلم الذكي:</strong> ${session.ai}</div>
-            ${session.content}
-        `;
-        speak(session.ai);
-    }
+            if(type === 'Leadership') {
+                title.innerText = "مسار القيادة الفعالة";
+                content.innerHTML = `<h3>الجلسة 1: سمات القائد في القرن 21</h3><p>تتضمن هذه الجلسة 4 ساعات تدريبية حول المرونة القيادية والذكاء الاجتماعي.</p><button class="btn-prime" onclick="speak('أهلاً بك في مسار القيادة مع هدير الأسدي. لنبدأ بدرس فن اتخاذ القرار')">بدء المشاهدة والتفاعل</button>`;
+            } else if(type === 'SelfDev') {
+                title.innerText = "مسار التطوير الذاتي";
+                content.innerHTML = `<h3>الجلسة 1: هندسة الذات</h3><p>برنامج مكثف لمدة 8 ساعات حول إعادة برمجة العادات اليومية.</p><button class="btn-prime" onclick="speak('مرحباً بك في رحلة تطوير الذات. قوتك تبدأ من الداخل.')">بدء التمرين</button>`;
+            }
+        }
 
-    function speak(text) {
-        window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = 'ar-SA';
-        utter.rate = 0.8; // سرعة تعليمية رصينة
-        utter.pitch = 0.9; 
-        window.speechSynthesis.speak(utter);
-    }
-
-    // تحميل الجلسة الأولى عند الفتح
-    window.onload = () => loadSession(1);
-</script>
-
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'ar-SA';
+            utter.rate = 0.9;
+            utter.pitch = 1; 
+            window.speechSynthesis.speak(utter);
+        }
+    </script>
 </body>
 </html>
