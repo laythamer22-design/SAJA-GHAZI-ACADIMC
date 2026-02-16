@@ -3,124 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية هدير الأسدي | للتدريب والتطوير الشامل</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <title>أكاديمية هدير الأسدي | التدريب والتطوير العالمي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --brand-main: #1a1a2e; /* كحلي ملكي */
-            --brand-gold: #c5a059; /* ذهبي مطفي */
-            --brand-light: #f4f4f9;
+            --primary-dark: #0d1b2a; /* كحلي عميق */
+            --accent-gold: #e0ae3d;  /* ذهبي مشرق */
+            --bg-light: #f8f9fa;
             --white: #ffffff;
         }
 
-        body { font-family: 'Cairo', sans-serif; margin: 0; background: var(--brand-light); color: var(--brand-main); overflow-x: hidden; }
+        body { font-family: 'Cairo', sans-serif; margin: 0; background: var(--bg-light); color: var(--primary-dark); }
 
-        /* الشاشة الافتتاحية */
-        .page { display: none; min-height: 100vh; animation: fadeIn 0.6s ease-in-out; }
+        /* الشاشات */
+        .page { display: none; min-height: 100vh; animation: fadeIn 0.5s ease; }
         .active { display: block !important; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* الهيدر الفخم */
+        /* واجهة الهبوط */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.9)), 
-                        url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1500') center/cover;
+            background: linear-gradient(rgba(13, 27, 42, 0.85), rgba(13, 27, 42, 0.85)), 
+                        url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1500') center/cover;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white);
         }
 
-        .hero h1 { font-size: 4.5rem; margin: 0; font-weight: 900; color: var(--brand-gold); }
-        .hero p { font-size: 1.5rem; max-width: 800px; margin: 20px 0; font-weight: 300; }
+        .hero h1 { font-size: 4rem; margin: 0; color: var(--accent-gold); }
+        .hero p { font-size: 1.4rem; max-width: 700px; margin: 20px auto; line-height: 1.6; }
 
-        /* الأزرار */
-        .btn-prime {
-            background: var(--brand-gold); color: var(--brand-main);
-            padding: 18px 50px; border: none; border-radius: 4px;
-            font-size: 1.2rem; font-weight: bold; cursor: pointer;
-            transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        .btn-prime:hover { background: var(--white); transform: translateY(-3px); }
-
-        /* شبكة التصنيفات التدريبية */
-        .categories-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px; padding: 50px; max-width: 1200px; margin: auto;
+        /* شبكة الأقسام التدريبية */
+        .curriculum-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px; padding: 40px; max-width: 1300px; margin: auto;
         }
 
-        .cat-card {
-            background: var(--white); border-radius: 12px; padding: 40px;
-            text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-bottom: 5px solid var(--brand-gold); transition: 0.4s;
+        .module-card {
+            background: var(--white); border-radius: 12px; padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-top: 4px solid var(--accent-gold);
+            transition: 0.3s; cursor: pointer;
         }
-        .cat-card:hover { transform: translateY(-10px); }
-        .cat-card i { font-size: 3rem; color: var(--brand-gold); margin-bottom: 20px; display: block; }
-        .cat-card h3 { font-size: 1.8rem; margin: 10px 0; }
+        .module-card:hover { transform: translateY(-10px); }
+        .module-card h3 { color: var(--primary-dark); margin-bottom: 10px; }
+        .hour-badge { background: var(--primary-dark); color: var(--accent-gold); padding: 3px 10px; border-radius: 5px; font-size: 0.8rem; }
 
-        /* لوحة التحكم بالتدريب */
-        .training-container { display: grid; grid-template-columns: 300px 1fr; gap: 20px; padding: 20px; }
-        .sidebar { background: var(--brand-main); color: var(--white); border-radius: 15px; padding: 25px; }
-        .content-box { background: var(--white); border-radius: 15px; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        /* منطقة التدريب المكثف */
+        .training-layout { display: grid; grid-template-columns: 320px 1fr; min-height: 100vh; }
+        .sidebar { background: var(--primary-dark); color: white; padding: 30px; }
+        .main-content { padding: 50px; }
+        
+        .ai-message {
+            background: #fff; border: 2px solid var(--accent-gold); padding: 20px;
+            border-radius: 15px; margin-bottom: 30px; position: relative;
+        }
 
+        .btn-gold {
+            background: var(--accent-gold); color: var(--primary-dark);
+            padding: 15px 40px; border: none; border-radius: 5px;
+            font-weight: 900; cursor: pointer; transition: 0.3s;
+        }
     </style>
 </head>
 <body>
 
-    <section id="welcome" class="page active">
+    <section id="welcome-page" class="page active">
         <div class="hero">
             <h1>أكاديمية هدير الأسدي</h1>
-            <p>منصة التطوير الرائدة لبناء المهارات، القيادة، والابتكار الشخصي والمؤسسي</p>
-            <button class="btn-prime" onclick="showPage('catalog')">استعراض المسارات التدريبية</button>
+            <p>منصة التطوير والتدريب المعتمدة دولياً. نصنع قادة المستقبل عبر برامج تدريبية مكثفة تخضع لأعلى معايير الجودة العالمية.</p>
+            <button class="btn-gold" onclick="showPage('catalog-page')">دخول بوابة المتدربين</button>
         </div>
     </section>
 
-    <section id="catalog" class="page">
-        <div style="text-align: center; padding: 60px 20px;">
-            <h2 style="font-size: 2.5rem;">بوابتك نحو التميز</h2>
-            <p>اختر المسار الذي يناسب طموحاتك المهنية والشخصية</p>
+    <section id="catalog-page" class="page">
+        <div style="text-align: center; padding: 50px;">
+            <h2 style="font-size: 2.5rem;">الحقائب التدريبية المعتمدة</h2>
+            <p>برامج مكثفة مصممة لتطوير الكفاءات البشرية</p>
         </div>
-
-        <div class="categories-grid">
-            <div class="cat-card" onclick="startTraining('Leadership')">
-                <span>🏆</span>
-                <h3>القيادة والإدارة</h3>
-                <p>صناعة القادة وتطوير فرق العمل الذكية.</p>
-                <button class="btn-prime" style="padding: 10px 20px; font-size: 0.9rem;">دخول المسار</button>
+        
+        <div class="curriculum-grid">
+            <div class="module-card" onclick="openModule('self')">
+                <span class="hour-badge">12 ساعة تدريبية</span>
+                <h3>تطوير الذات (Self-Growth)</h3>
+                <p>إدارة العقل، الذكاء العاطفي، وهندسة العادات اليومية.</p>
             </div>
 
-            <div class="cat-card" onclick="startTraining('SelfDev')">
-                <span>🚀</span>
-                <h3>التطوير الذاتي</h3>
-                <p>تعزيز الثقة، إدارة الوقت، والذكاء العاطفي.</p>
-                <button class="btn-prime" style="padding: 10px 20px; font-size: 0.9rem;">دخول المسار</button>
+            <div class="module-card" onclick="openModule('skills')">
+                <span class="hour-badge">10 ساعات تدريبية</span>
+                <h3>بناء المهارات (Skill Building)</h3>
+                <p>التفكير النقدي، حل المشكلات المعقدة، والاتصال الفعال.</p>
             </div>
 
-            <div class="cat-card" onclick="startTraining('Skills')">
-                <span>💡</span>
-                <h3>المهارات المهنية</h3>
-                <p>إدارة المشاريع، المهارات التقنية، والتخطيط الاستراتيجي.</p>
-                <button class="btn-prime" style="padding: 10px 20px; font-size: 0.9rem;">دخول المسار</button>
+            <div class="module-card" onclick="openModule('peace')">
+                <span class="hour-badge">8 ساعات تدريبية</span>
+                <h3>التعايش السلمي (Peacebuilding)</h3>
+                <p>مهارات التفاوض، قبول الآخر، والذكاء الثقافي العالمي.</p>
+            </div>
+
+            <div class="module-card" onclick="openModule('academic')">
+                <span class="hour-badge">15 ساعة تدريبية</span>
+                <h3>النجاح الأكاديمي (Academic Excellence)</h3>
+                <p>مناهج البحث، القراءة السريعة، وإدارة القلق الامتحاني.</p>
             </div>
         </div>
     </section>
 
-    <section id="training-zone" class="page">
-        <div class="training-container">
+    <section id="training-page" class="page">
+        <div class="training-layout">
             <div class="sidebar">
-                <h2 style="color: var(--brand-gold);">هدير الأسدي</h2>
-                <p>مدربك الافتراضي الشخصي</p>
-                <hr style="opacity: 0.2;">
-                <nav>
-                    <p style="cursor:pointer" onclick="showPage('catalog')">🏠 العودة للرئيسية</p>
-                    <p>📊 تقدمك: 15%</p>
-                    <p>📜 الشهادات المتاحة</p>
-                </nav>
+                <h2 style="color: var(--accent-gold);">هدير الأسدي</h2>
+                <p>نظام التدريب الذكي v2.0</p>
+                <hr style="opacity:0.2">
+                <nav id="module-nav">
+                    </nav>
             </div>
-            <div class="content-box">
-                <h2 id="module-title" style="color: var(--brand-main);">اسم البرنامج التدريبي</h2>
-                <div id="ai-instructor" style="background: #eef2ff; padding: 20px; border-radius: 10px; border-right: 5px solid var(--brand-gold); margin-bottom: 30px;">
-                    🤖 <strong>المساعد الذكي:</strong> "أهلاً بك في أكاديمية هدير الأسدي. سنبدأ اليوم رحلة تحويل أهدافك إلى واقع ملموس."
+            <div class="main-content">
+                <div class="ai-message" id="ai-box">
+                    🤖 <strong>المدرب الافتراضي:</strong> مرحباً بك. جاهز للبدء في برنامجك المكثف؟
                 </div>
-                <div id="learning-content">
+                <div id="learning-area">
                     </div>
+                <button class="btn-gold" style="margin-top:20px" onclick="showPage('catalog-page')">العودة للحقائب التدريبية</button>
             </div>
         </div>
     </section>
@@ -132,26 +133,43 @@
             window.scrollTo(0,0);
         }
 
-        function startTraining(type) {
-            const title = document.getElementById('module-title');
-            const content = document.getElementById('learning-content');
-            showPage('training-zone');
-
-            if(type === 'Leadership') {
-                title.innerText = "مسار القيادة الفعالة";
-                content.innerHTML = `<h3>الجلسة 1: سمات القائد في القرن 21</h3><p>تتضمن هذه الجلسة 4 ساعات تدريبية حول المرونة القيادية والذكاء الاجتماعي.</p><button class="btn-prime" onclick="speak('أهلاً بك في مسار القيادة مع هدير الأسدي. لنبدأ بدرس فن اتخاذ القرار')">بدء المشاهدة والتفاعل</button>`;
-            } else if(type === 'SelfDev') {
-                title.innerText = "مسار التطوير الذاتي";
-                content.innerHTML = `<h3>الجلسة 1: هندسة الذات</h3><p>برنامج مكثف لمدة 8 ساعات حول إعادة برمجة العادات اليومية.</p><button class="btn-prime" onclick="speak('مرحباً بك في رحلة تطوير الذات. قوتك تبدأ من الداخل.')">بدء التمرين</button>`;
+        const data = {
+            self: {
+                title: "دبلوم تطوير الذات المكثف",
+                speech: "أهلاً بك في مسار تطوير الذات. سنعمل هنا على إعادة هيكلة العقل الباطن وإدارة الانفعالات وفق معايير علم النفس الحديث.",
+                content: "<h3>المحور الأول: هندسة العادات (3 ساعات)</h3><p>تطبيقات عملية على قاعدة الـ 21 يوماً لإحداث تغيير جذري.</p><h3>المحور الثاني: الذكاء العاطفي (5 ساعات)</h3><p>كيفية فهم المشاعر وتوظيفها للنجاح المهني.</p>"
+            },
+            skills: {
+                title: "بناء المهارات الحياتية والمهنية",
+                speech: "هذا المسار يركز على مهارات القرن الواحد والعشرين. سنتعلم حل المشكلات بمنهجية التفكير التصميمي.",
+                content: "<h3>المحور الأول: التفكير النقدي (4 ساعات)</h3><p>تحليل البيانات واتخاذ القرار تحت الضغط.</p><h3>المحور الثاني: مهارات العرض والإلقاء (6 ساعات)</h3><p>كيف تؤثر في الجمهور وتوصل فكرتك بذكاء.</p>"
+            },
+            peace: {
+                title: "منهج التعايش السلمي العالمي",
+                speech: "هذا البرنامج يعتمد على معايير اليونسكو للسلام. نهدف لبناء مجتمعات واعية تحترم التنوع الثقافي.",
+                content: "<h3>المحور الأول: الذكاء الثقافي (4 ساعات)</h3><p>فهم الاختلافات وكيفية بناء جسور التواصل.</p><h3>المحور الثاني: فض النزاعات (4 ساعات)</h3><p>تقنيات الوساطة والتفاوض السلمي.</p>"
+            },
+            academic: {
+                title: "استراتيجيات النجاح الأكاديمي",
+                speech: "النجاح الدراسي ليس ذكاءً فقط، بل هو استراتيجية. سنعلمك كيف تتعلم بذكاء وليس بجهد.",
+                content: "<h3>المحور الأول: مهارات القراءة والاستيعاب (7 ساعات)</h3><p>القراءة السريعة والخرائط الذهنية.</p><h3>المحور الثاني: إدارة الوقت الأكاديمي (8 ساعات)</h3><p>تقنيات التركيز العميق وتجاوز التسويف الدراسي.</p>"
             }
+        };
+
+        function openModule(key) {
+            const module = data[key];
+            document.getElementById('ai-box').innerHTML = `🤖 <strong>المدرب الافتراضي:</strong> ${module.speech}`;
+            document.getElementById('learning-area').innerHTML = `<h2>${module.title}</h2>${module.content}`;
+            showPage('training-page');
+            speak(module.speech);
         }
 
         function speak(text) {
             window.speechSynthesis.cancel();
             const utter = new SpeechSynthesisUtterance(text);
             utter.lang = 'ar-SA';
-            utter.rate = 0.9;
-            utter.pitch = 1; 
+            utter.rate = 0.85; // سرعة تدريبية واضحة
+            utter.pitch = 0.95; // نبرة بشرية وقورة
             window.speechSynthesis.speak(utter);
         }
     </script>
