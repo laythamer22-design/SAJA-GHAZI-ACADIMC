@@ -9,16 +9,17 @@
         :root {
             --navy: #0f172a;
             --gold: #b59410;
-            --light-bg: #f8fafc;
+            --bg-light: #f8fafc;
             --white: #ffffff;
+            --text: #334155;
         }
 
         body {
             font-family: 'Cairo', sans-serif;
             margin: 0;
-            background: var(--light-bg);
+            background: var(--bg-light);
             color: var(--navy);
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         /* نظام الصفحات */
@@ -26,118 +27,176 @@
         .active { display: block !important; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* الشاشة الافتتاحية */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), 
-                        url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1500') center/cover;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;
-            padding: 20px;
+        /* الهيدر */
+        header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--gold);
         }
-        .hero h1 { font-family: 'Amiri', serif; font-size: 4rem; color: var(--gold); margin: 0; }
-        .btn-start {
-            background: var(--gold); color: white; padding: 18px 50px;
-            border: none; border-radius: 5px; font-weight: 900; cursor: pointer;
-            transition: 0.3s; font-size: 1.2rem; margin-top: 30px;
+        header h1 { font-family: 'Amiri', serif; font-size: 3.5rem; color: var(--gold); margin: 0; }
+
+        /* الشبكة الرئيسية */
+        .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--gold);
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .btn-start:hover { background: white; color: var(--navy); }
+        .card:hover { transform: translateY(-10px); }
+        .card h2 { font-size: 1.6rem; margin-top: 0; color: var(--navy); }
+        .card .badge { background: var(--navy); color: var(--gold); padding: 5px 15px; border-radius: 5px; font-size: 0.9rem; font-weight: bold; }
 
-        /* دليل الحقائب التدريبية */
-        .grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px; padding: 60px 20px; max-width: 1200px; margin: auto;
-        }
-        .package-card {
-            background: var(--white); padding: 35px; border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 5px solid var(--gold);
-            transition: 0.3s; cursor: pointer;
-        }
-        .package-card:hover { transform: translateY(-10px); }
-        .badge { background: var(--navy); color: var(--gold); padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; }
+        /* منطقة التدريب المكثف */
+        .training-layout { display: grid; grid-template-columns: 350px 1fr; min-height: 100vh; }
+        .sidebar { background: var(--navy); color: white; padding: 40px 25px; border-left: 1px solid rgba(255,255,255,0.1); }
+        .main-content { padding: 60px; background: var(--white); }
+        
+        /* تنسيق الحقيبة التدريبية */
+        .package-header { border-bottom: 2px solid var(--gold); margin-bottom: 30px; padding-bottom: 10px; }
+        .package-section { background: #fdfbf5; border-right: 5px solid var(--gold); padding: 25px; margin-bottom: 30px; border-radius: 0 10px 10px 0; }
+        .package-section h3 { color: var(--gold); margin-top: 0; font-size: 1.8rem; }
+        .exercise-box { background: #eff6ff; border: 1px dashed #3b82f6; padding: 20px; border-radius: 8px; margin-top: 15px; }
+        .exercise-box b { color: #1e40af; }
 
-        /* غرفة التدريب */
-        .training-layout { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; }
-        .sidebar { background: var(--navy); color: white; padding: 40px 25px; }
-        .sidebar h2 { color: var(--gold); font-family: 'Amiri'; }
-        .main-content { padding: 50px; background: var(--white); }
-        .coach-bubble { background: #f1f5f9; border-right: 6px solid var(--gold); padding: 20px; border-radius: 10px; margin-bottom: 30px; font-weight: bold; }
+        .btn-back { background: var(--gold); color: white; border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-bottom: 20px; }
 
-        .lesson-text h2 { color: var(--navy); border-bottom: 2px solid var(--gold); padding-bottom: 10px; }
-        .lesson-text h3 { color: var(--gold); margin-top: 25px; }
-
-        @media (max-width: 768px) { .training-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+        @media (max-width: 900px) { .training-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
     </style>
 </head>
 <body>
 
-    <section id="p1" class="page active">
-        <div class="hero">
+    <section id="catalog" class="page active">
+        <header>
             <h1>أكاديمية هدير الأسدي</h1>
-            <p>منصة التطوير العالمي - برامج تدريبية مكثفة لحل مشكلات الأداء وتطوير الذات</p>
-            <button class="btn-start" onclick="nav('p2')">دخول دليل الحقائب</button>
+            <p>منصة التدريب والتطوير المعتمدة | حقائب تدريبية وفق المعايير العالمية</p>
+        </header>
+        <div class="container">
+            <div class="grid">
+                <div class="card" onclick="openModule('u1')">
+                    <span class="badge">4 ساعات مكثفة</span>
+                    <h2>الوحدة 1: سيكولوجية التغيير</h2>
+                    <p>حقيبة متكاملة تشمل منهج ستانفورد للنمو وتقنيات العلاج السلوكي CBT.</p>
+                </div>
+                <div class="card" onclick="openModule('u2')">
+                    <span class="badge">8 ساعات مكثفة</span>
+                    <h2>الوحدة 2: إدارة الذات العاطفية</h2>
+                    <p>حقيبة دبلوم الذكاء العاطفي وفق نموذج دانيال جولمان وبروتوكولات الصمود.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="p2" class="page">
-        <div style="text-align: center; padding-top: 50px;">
-            <h2 style="font-size: 2.5rem; font-family: 'Amiri';">الحقائب التدريبية العالمية</h2>
-        </div>
-        <div class="grid">
-            <div class="package-card" onclick="load('u1')">
-                <span class="badge">4 ساعات</span>
-                <h3>سيكولوجية التغيير</h3>
-                <p>حل مشكلة الجمود العقلي بناءً على منهجية ستانفورد.</p>
-            </div>
-            <div class="package-card" onclick="load('u2')">
-                <span class="badge">8 ساعات</span>
-                <h3>إدارة الذات العاطفية</h3>
-                <p>إتقان الثبات الانفعالي وفق نموذج دانيال جولمان.</p>
-            </div>
-        </div>
-        <div style="text-align: center;"><button class="btn-start" onclick="nav('p1')">العودة</button></div>
-    </section>
-
-    <section id="p3" class="page">
+    <section id="training" class="page">
         <div class="training-layout">
             <aside class="sidebar">
-                <h2>هدير الأسدي</h2>
-                <p onclick="nav('p2')" style="cursor:pointer">🏠 قائمة الحقائب</p>
-                <p onclick="nav('p1')" style="cursor:pointer">🚪 خروج</p>
+                <h2 style="color: var(--gold); font-family: 'Amiri'; font-size: 2.2rem;">هدير الأسدي</h2>
+                <p>دليل الحقيبة التدريبية v2.0</p>
+                <hr style="opacity: 0.2;">
+                <button class="btn-back" onclick="showCatalog()">⬅ العودة للدليل</button>
+                <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 40px;">
+                    📌 هذه المادة خاضعة لحقوق الملكية الفكرية لأكاديمية هدير الأسدي.
+                </div>
             </aside>
             <main class="main-content">
-                <div class="coach-bubble" id="coach-msg"></div>
-                <div id="lesson-ui" class="lesson-text"></div>
+                <div id="content-viewer">
+                    </div>
             </main>
         </div>
     </section>
 
     <script>
-        const content = {
+        const fullPackages = {
             u1: {
-                title: "الوحدة 1: سيكولوجية التغيير",
-                coach: "أهلاً بك. سنعالج اليوم مشكلة 'الجمود العقلي'. تذكر أن العقلية ليست قدراً، بل هي عضلة نطورها بـ 'قوة ليس بعد'.",
-                body: `<h2>🛡️ سيكولوجية التغيير</h2><h3>1. هندسة العقلية (Stanford)</h3><p>تفعيل قوة "ليس بعد": تحويل الفشل إلى بيانات تعلم مستمر. البدء بمواجهة التحديات كفرص للنمو وليس كتهديدات.</p><h3>2. استئصال النقد الذاتي (CBT)</h3><p>تقنية التسمية والفصل: عزل الأفكار السلبية عن الهوية الشخصية لتقليل القلق بنسبة 40%.</p>`
+                title: "الحقيبة المتكاملة: سيكولوجية التغيير (Stanford & CBT)",
+                content: `
+                    <div class="package-header">
+                        <h2>الوحدة الأولى: هندسة العقلية واستئصال النقد الذاتي</h2>
+                        <p><b>الأهداف:</b> كسر الجمود العقلي، بناء المرونة العصبية، وتحييد الناقد الداخلي.</p>
+                    </div>
+
+                    <div class="package-section">
+                        <h3>1. هندسة العقلية (Stanford Growth Model)</h3>
+                        <p>تعتمد هذه المادة على أبحاث الدكتورة <b>كارول دويك</b> من جامعة ستانفورد حول "المرونة العصبية".</p>
+                        <ul>
+                            <li><b>مفهوم العقلية الثابتة:</b> الاعتقاد بأن الذكاء ثابت مما يؤدي للخوف من الفشل والانسحاب من التحديات.</li>
+                            <li><b>مفهوم عقلية النمو:</b> الإدراك بأن الدماغ ينمو كالعضلة عند مواجهة الصعاب.</li>
+                            <li><b>تقنية "قوة ليس بعد" (The Power of Yet):</b> تحويل التقييم من نهائي (فشلت) إلى مسار (لم أنجح <b>بعد</b>). هذا يحفز قشرة الدماغ الأمامية للبحث عن حلول بدلاً من التوقف.</li>
+                        </ul>
+                        <div class="exercise-box">
+                            <b>💡 تمرين عملي:</b> استرجع مهمة فشلت فيها مؤخراً. أعد صياغة النتيجة باستخدام كلمة "بعد"، ثم اكتب 3 مهارات فرعية تحتاج لتطويرها لتجاوز هذه النقطة.
+                        </div>
+                    </div>
+
+                    <div class="package-section">
+                        <h3>2. استئصال النقد الذاتي (CBT Protocol)</h3>
+                        <p>استخدام أدوات <b>العلاج المعرفي السلوكي</b> لتفكيك "الحوار الذاتي" المدمر.</p>
+                        <ul>
+                            <li><b>رصد التشوهات المعرفية:</b> تعلم التعرف على "التفكير الكارثي" و"الكل أو لا شيء".</li>
+                            <li><b>تقنية التسمية والفصل (Labeling):</b> بدلاً من قول "أنا فاشل"، قل "أنا ألاحظ أن عقلي يولد فكرة تخبرني بالفشل". هذا الفصل يقلل القلق بنسبة 40% عبر تهدئة اللوزة الدماغية.</li>
+                            <li><b>إعادة الهيكلة المعرفية:</b> استبدال الناقد الداخلي بـ "المستشار الصديق" عبر الأسئلة السقراطية (هل هذا الفكر حقيقة أم مجرد شعور؟).</li>
+                        </ul>
+                        <div class="exercise-box">
+                            <b>🧪 تمرين السيطرة:</b> صمم "بروتوكول الرد" الخاص بك. عندما يبدأ النقد الداخلي، ما هي الجملة العلمية التي سترد بها عليه فوراً؟
+                        </div>
+                    </div>
+                `
             },
             u2: {
-                title: "الوحدة 2: إدارة الذات العاطفية",
-                coach: "تحكم في مشاعرك، تقود حياتك. سنطبق الآن بروتوكولات التوازن العاطفي العالمية.",
-                body: `<h2>🧠 إدارة الذات العاطفية</h2><h3>1. الوعي الذاتي الراديكالي</h3><p>المسافة الصفرية: رصد العلامات الجسدية للانفعال قبل وقوعه. تسمية الشعور بدقة لتهدئة الدماغ فوراً.</p><h3>2. بروتوكول الصمود</h3><p>قاعدة الـ 6 ثوانٍ: تعطيل رد الفعل الدفاعي التلقائي. التنفس المربع لاستعادة الهدوء في ثوانٍ معدودة.</p>`
+                title: "دبلوم إدارة الذات العاطفية (Goleman Framework)",
+                content: `
+                    <div class="package-header">
+                        <h2>الوحدة الثانية: الوعي الذاتي والثبات الانفعالي</h2>
+                        <p><b>الأهداف:</b> السيطرة على الاختطاف العاطفي وبناء الصمود النفسي تحت الضغط.</p>
+                    </div>
+
+                    <div class="package-section">
+                        <h3>1. الوعي الذاتي الراديكالي</h3>
+                        <p>مبني على نموذج دانيال جولمان للذكاء العاطفي.</p>
+                        <ul>
+                            <li><b>فيزياء العواطف:</b> رصد "المسافة الصفرية" - وهي اللحظة التي تسبق رد الفعل. تتبع تسارع النبض وحرارة الجسم كإنذارات مبكرة.</li>
+                            <li><b>قاموس المشاعر الدقيق:</b> العلم يثبت أن تسمية المشاعر (أنا أشعر بالارتباك) بدلاً من (أنا غاضب) تهدئ الدماغ فوراً وتفتح منطقة التحليل المنطقي.</li>
+                        </ul>
+                    </div>
+
+                    <div class="package-section">
+                        <h3>2. بروتوكول الصمود والضبط (Self-Regulation)</h3>
+                        <ul>
+                            <li><b>منع الاختطاف العاطفي (Amygdala Hijack):</b> فهم كيف يختطف الخوف عقلنا، واستخدام "قاعدة الـ 6 ثوانٍ" لاستعادة السيطرة.</li>
+                            <li><b>تقنية التنفس المربع (Box Breathing):</b> التقنية المعتمدة عالمياً لخفض الكورتيزول فوراً واستعادة التركيز في مواقف الضغط العالي.</li>
+                            <li><b>درع الحماية النفسية:</b> بناء حواجز ضد الطاقات السلبية المحيطة في بيئة العمل.</li>
+                        </ul>
+                        <div class="exercise-box">
+                            <b>📈 نشاط تطبيقي:</b> خلال الـ 24 ساعة القادمة، طبق "صمت الـ 6 ثوانٍ" قبل أي رد فعل انفعالي، ودون الفرق في جودة قراراتك.
+                        </div>
+                    </div>
+                `
             }
         };
 
-        function nav(id) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+        function showCatalog() {
+            document.getElementById('training').classList.remove('active');
+            document.getElementById('catalog').classList.add('active');
         }
 
-        function load(key) {
-            const d = content[key];
-            document.getElementById('coach-msg').innerText = "🤖 المدرب: " + d.coach;
-            document.getElementById('lesson-ui').innerHTML = d.body;
-            nav('p3');
-            const s = new SpeechSynthesisUtterance(d.coach);
-            s.lang = 'ar-SA';
-            window.speechSynthesis.speak(s);
+        function openModule(key) {
+            const data = fullPackages[key];
+            document.getElementById('content-viewer').innerHTML = data.content;
+            document.getElementById('catalog').classList.remove('active');
+            document.getElementById('training').classList.add('active');
+            window.scrollTo(0,0);
+            
+            // نطق ترحيبي بسيط
+            const intro = new SpeechSynthesisUtterance("أهلاً بك في " + data.title);
+            intro.lang = 'ar-SA';
+            window.speechSynthesis.speak(intro);
         }
     </script>
 </body>
