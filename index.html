@@ -3,214 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية هدير الأسدي | المنصة العالمية للتدريب</title>
+    <title>أكاديمية هدير الأسدي | الحقائب التدريبية العالمية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-dark: #0f172a; /* كحلي ملكي عميق */
-            --gold: #b59410;       /* ذهبي كلاسيكي */
-            --soft-bg: #f8fafc;
-            --text-main: #1e293b;
-        }
-
-        body { font-family: 'Cairo', sans-serif; margin: 0; background: var(--soft-bg); color: var(--text-main); }
-
-        /* الأقسام */
-        .view { display: none; min-height: 100vh; animation: slideIn 0.6s ease; }
+        :root { --main: #0f172a; --gold: #b59410; --bg: #f8fafc; }
+        body { font-family: 'Cairo', sans-serif; margin: 0; background: var(--bg); color: #1e293b; }
+        
+        .view { display: none; min-height: 100vh; animation: fadeIn 0.5s ease; }
         .active { display: block !important; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* واجهة الهبوط العالمية */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), 
-                        url('https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=1500') center/cover;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;
-        }
+        /* الهيدر */
+        header { background: var(--main); color: white; padding: 40px; text-align: center; border-bottom: 6px solid var(--gold); }
+        header h1 { font-family: 'Amiri', serif; font-size: 3.5rem; color: var(--gold); margin: 0; }
 
-        .hero h1 { font-size: 4.5rem; color: var(--gold); margin: 0; font-weight: 900; }
-        .hero p { font-size: 1.6rem; max-width: 800px; margin: 25px 0; font-weight: 300; line-height: 1.8; }
+        /* البطاقات التدريبية */
+        .container { max-width: 1200px; margin: auto; padding: 40px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .package-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer; border: 1px solid #e2e8f0; transition: 0.3s; }
+        .package-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .package-card h3 { color: var(--main); font-size: 1.5rem; margin-bottom: 10px; }
+        .badge { background: var(--gold); color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
 
-        .btn-action {
-            background: var(--gold); color: white; padding: 20px 60px; font-size: 1.3rem;
-            border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s;
-            box-shadow: 0 10px 25px rgba(181, 148, 16, 0.3);
-        }
-        .btn-action:hover { background: white; color: var(--primary-dark); transform: scale(1.05); }
-
-        /* دليل الدورات */
-        .catalog-container { max-width: 1300px; margin: auto; padding: 60px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .course-card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-top: 6px solid var(--gold); transition: 0.4s; }
-        .course-card:hover { transform: translateY(-10px); }
-        .course-card h3 { font-size: 1.8rem; margin-top: 0; }
-        .hour-tag { display: inline-block; background: #e2e8f0; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; margin-bottom: 15px; font-weight: bold; color: var(--primary-dark); }
-
-        /* لوحة التدريب التفاعلية */
-        .training-room { display: grid; grid-template-columns: 350px 1fr; min-height: 100vh; }
-        .sidebar { background: var(--primary-dark); color: white; padding: 40px 20px; }
-        .lesson-viewer { padding: 60px; background: white; }
-        .ai-tutor-box { background: #f1f5f9; border-right: 6px solid var(--gold); padding: 25px; border-radius: 8px; margin-bottom: 40px; }
+        /* منطقة تفاصيل الحقيبة */
+        .details-area { background: white; max-width: 1000px; margin: 40px auto; padding: 50px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .module-step { border-right: 4px solid var(--gold); padding: 20px; margin-bottom: 20px; background: #fefcf5; }
+        .btn-back { background: var(--main); color: white; padding: 10px 25px; border: none; border-radius: 5px; cursor: pointer; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
-    <section id="hero" class="view active">
-        <div class="hero">
-            <h1>أكاديمية هدير الأسدي</h1>
-            <p>التميز في التدريب والتطوير وفق المعايير العالمية المعاصرة. برامج مكثفة تهدف لتمكين الإنسان وتطوير المهارات القيادية والأكاديمية.</p>
-            <button class="btn-action" onclick="go('catalog')">استكشاف المحتوى العالمي</button>
+<header>
+    <h1>أكاديمية هدير الأسدي</h1>
+    <p>منصة الحقائب التدريبية المعتمدة - تطوير بلا حدود</p>
+</header>
+
+<section id="catalog" class="view active">
+    <div class="container">
+        <div class="package-card" onclick="showPackage('self')">
+            <span class="badge">12 ساعة معتمدة</span>
+            <h3>تطوير الذات وتفعيل القوى</h3>
+            <p>منهاج متكامل يعتمد على قوانين الثقة وخرائط العقل.</p>
         </div>
-    </section>
-
-    <section id="catalog" class="view">
-        <div style="text-align: center; padding: 50px;">
-            <h2 style="font-size: 3rem;">المناهج التدريبية المعتمدة</h2>
-            <p style="font-size: 1.2rem; color: #64748b;">محتوى مصمم وفق دراسات عالمية لتمكين المهارات الشخصية والأكاديمية</p>
+        <div class="package-card" onclick="showPackage('skills')">
+            <span class="badge">10 ساعات معتمدة</span>
+            <h3>بناء مهارات القرن الـ21</h3>
+            <p>حل المشكلات، التفكير النقدي، والقيادة الرقمية.</p>
         </div>
-        
-        <div class="catalog-container">
-            <div class="course-card" onclick="startModule('self')">
-                <span class="hour-tag">⏱ 12 ساعة تدريبية</span>
-                <h3>تطوير الذات وهندسة العقل</h3>
-                <p>مبني على منهج (Stanford) لإعادة هيكلة التفكير والتغلب على قيود العقل الباطن.</p>
-            </div>
-
-            <div class="course-card" onclick="startModule('skills')">
-                <span class="hour-tag">⏱ 10 ساعات تدريبية</span>
-                <h3>مهارات القرن الحادي والعشرين</h3>
-                <p>إتقان التفكير النقدي، حل المشكلات المعقدة، والاتصال الاستراتيجي الفعال.</p>
-            </div>
-
-            <div class="course-card" onclick="startModule('peace')">
-                <span class="hour-tag">⏱ 8 ساعات تدريبية</span>
-                <h3>دبلوماسية التعايش السلمي</h3>
-                <p>منهج عالمي (UNESCO) لتعزيز الذكاء الثقافي، قبول الآخر، وفن التفاوض السلمي.</p>
-            </div>
-
-            <div class="course-card" onclick="startModule('academic')">
-                <span class="hour-tag">⏱ 15 ساعة تدريبية</span>
-                <h3>استراتيجيات التفوق الأكاديمي</h3>
-                <p>القراءة الفعالة، الخرائط الذهنية، وأساليب البحث العلمي وفق معايير (Oxford).</p>
-            </div>
+        <div class="package-card" onclick="showPackage('peace')">
+            <span class="badge">8 ساعات معتمدة</span>
+            <h3>دبلوم التعايش السلمي</h3>
+            <p>مبني على معايير اليونسكو لتعزيز التماسك المجتمعي.</p>
         </div>
-    </section>
-
-    <section id="training" class="view">
-        <div class="training-room">
-            <div class="sidebar">
-                <h2 style="color: var(--gold); font-family: 'Amiri';">هدير الأسدي</h2>
-                <p style="opacity: 0.7; font-size: 0.9rem;">Hadeer Al-Asadi Academy</p>
-                <hr style="border: 0.5px solid rgba(255,255,255,0.1); margin: 30px 0;">
-                <nav>
-                    <p style="cursor: pointer;" onclick="go('catalog')">⬅ العودة للقائمة</p>
-                    <p>📂 ملف المتدرب</p>
-                    <p>✅ الاختبار النهائي</p>
-                </nav>
-            </div>
-            <div class="lesson-viewer">
-                <div class="ai-tutor-box">
-                    <p id="ai-text">🤖 <strong>توجيه المدرب:</strong> جاهز لبدء الجلسة التدريبية؟</p>
-                </div>
-                <div id="course-content">
-                    </div>
-            </div>
+        <div class="package-card" onclick="showPackage('academic')">
+            <span class="badge">15 ساعة معتمدة</span>
+            <h3>استراتيجيات النجاح الأكاديمي</h3>
+            <p>أدوات التعلم السريع وإدارة القلق الأكاديمي.</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script>
-        function go(id) {
-            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            window.scrollTo(0,0);
+<section id="details" class="view">
+    <div class="details-area">
+        <button class="btn-back" onclick="goBack()">⬅ العودة للرئيسية</button>
+        <div id="package-content"></div>
+    </div>
+</section>
+
+<script>
+    const trainingPackages = {
+        self: {
+            title: "حقيبة تطوير الذات وإدارة القناعات",
+            objectives: "زرع الثقة، تصحيح الأفكار السلبية، وبناء العادات الإيجابية.",
+            modules: [
+                { title: "المحور الأول: فهم الذات (4 ساعات)", desc: "تحليل سوات الشخصي (SWOT)، وتحديد نقاط القوة ومعالجة القصور النفسي." },
+                { title: "المحور الثاني: التخطيط الشخصي (4 ساعات)", desc: "آليات تصميم الخطط المحققة للأهداف الذاتية وفق معيار SMART." },
+                { title: "المحور الثالث: إدارة الانفعالات (4 ساعات)", desc: "قوانين الثقة بالنفس والتحرر من تجارب الماضي السلبية." }
+            ]
+        },
+        skills: {
+            title: "حقيبة مهارات القرن الحادي والعشرين",
+            objectives: "إعداد كفاءات قادرة على التكيف مع تحولات العصر الرقمي.",
+            modules: [
+                { title: "المحور الأول: التفكير الناقد (5 ساعات)", desc: "تنمية مهارات التحليل المنطقي والقدرة على حل المشكلات المعقدة." },
+                { title: "المحور الثاني: الاتصال الفعال (5 ساعات)", desc: "إتقان لغة الجسد، الإلقاء، وفن التأثير في الجمهور." }
+            ]
+        },
+        peace: {
+            title: "حقيبة التعايش السلمي والتماسك المجتمعي",
+            objectives: "نشر ثقافة قبول الآخر وتفعيل آليات حل النزاعات.",
+            modules: [
+                { title: "المحور الأول: ثقافة الاختلاف (4 ساعات)", desc: "فهم التنوع الثقافي كعامل قوة، وإصلاح الخطاب التربوي." },
+                { title: "المحور الثاني: الوساطة المجتمعية (4 ساعات)", desc: "آليات حل النزاعات السلمية وتطوير التشريعات الداعمة للتعايش." }
+            ]
+        },
+        academic: {
+            title: "حقيبة استراتيجيات التعلم والنجاح الأكاديمي",
+            objectives: "تحسين فعالية التعليم من خلال تعزيز التفاعل والتعلم النشط.",
+            modules: [
+                { title: "المحور الأول: التعلم النشط (7 ساعات)", desc: "استراتيجيات حل المشكلات والعمل التعاوني الأكاديمي." },
+                { title: "المحور الثاني: أدوات البحث العلمي (8 ساعات)", desc: "إدارة المراجع العالمية وتقنيات الكتابة الأكاديمية الرصينة." }
+            ]
         }
+    };
 
-        const globalContent = {
-            self: {
-                title: "منهاج تطوير الذات المكثف",
-                ai: "أهلاً بك في أكاديمية هدير الأسدي. سنبدأ رحلة استكشاف الذات بناءً على 'نموذج النمو' العالمي. تذكر أن تطوير العقل هو أساس كل نجاح.",
-                details: `
-                    <h3>الوحدة 1: سيكولوجية التغيير (4 ساعات)</h3>
-                    <ul>
-                        <li>فهم نظرية (Growth Mindset) لكارول دويك.</li>
-                        <li>تقنيات التحكم في "النقد الداخلي" السلبي.</li>
-                    </ul>
-                    <h3>الوحدة 2: إدارة الذات العاطفية (8 ساعات)</h3>
-                    <ul>
-                        <li>نموذج جوليان روتر لموقع الضبط (Locus of Control).</li>
-                        <li>تدريبات عملية على الذكاء الوجداني.</li>
-                    </ul>
-                `
-            },
-            skills: {
-                title: "مهارات المستقبل والاتصال الاستراتيجي",
-                ai: "هذا المسار يمنحك الأدوات التي تطلبها كبرى الشركات العالمية. سنركز على مهارات التفكير غير التقليدي.",
-                details: `
-                    <h3>الوحدة 1: التفكير التصميمي (5 ساعات)</h3>
-                    <ul>
-                        <li>منهجية حل المشكلات بـ 5 خطوات عالمية.</li>
-                        <li>العصف الذهني الاستراتيجي.</li>
-                    </ul>
-                    <h3>الوحدة 2: الكاريزما والتأثير (5 ساعات)</h3>
-                    <ul>
-                        <li>لغة الجسد الاحترافية في الإلقاء.</li>
-                        <li>بناء الثقة أمام الجمهور.</li>
-                    </ul>
-                `
-            },
-            peace: {
-                title: "سفراء التعايش والسلام المجتمعي",
-                ai: "هنا نبني جسور التواصل. هذا المحتوى يعتمد على معايير السلام الدولية لليونسكو.",
-                details: `
-                    <h3>الوحدة 1: الذكاء الثقافي (4 ساعات)</h3>
-                    <ul>
-                        <li>كيفية فهم القيم العالمية المشتركة.</li>
-                        <li>تجاوز التحيزات النمطية.</li>
-                    </ul>
-                    <h3>الوحدة 2: مهارات الحوار والوساطة (4 ساعات)</h3>
-                    <ul>
-                        <li>تقنيات الاستماع النشط في فض النزاعات.</li>
-                        <li>بناء بيئات عمل متعايشة.</li>
-                    </ul>
-                `
-            },
-            academic: {
-                title: "التميز الأكاديمي ومنهجية البحث",
-                ai: "هذا المحتوى مصمم للطلبة والباحثين الذين يطمحون للعالمية. سنتعلم كيف نحول الدراسة إلى متعة إنتاجية.",
-                details: `
-                    <h3>الوحدة 1: تقنيات التعلم العميق (7 ساعات)</h3>
-                    <ul>
-                        <li>طريقة (Feynman) لشرح المفاهيم المعقدة.</li>
-                        <li>إدارة الوقت بنظام (Pomodoro) المطور.</li>
-                    </ul>
-                    <h3>الوحدة 2: أدوات البحث العلمي (8 ساعات)</h3>
-                    <ul>
-                        <li>كيفية كتابة الأبحاث الأكاديمية الرصينة.</li>
-                        <li>إدارة المراجع والمصادر العالمية.</li>
-                    </ul>
-                `
-            }
-        };
+    function showPackage(id) {
+        const pkg = trainingPackages[id];
+        let content = `<h2>${pkg.title}</h2><p><strong>الأهداف العامة:</strong> ${pkg.objectives}</p><hr>`;
+        pkg.modules.forEach(m => {
+            content += `<div class="module-step"><h4>${m.title}</h4><p>${m.desc}</p></div>`;
+        });
+        document.getElementById('package-content').innerHTML = content;
+        document.getElementById('catalog').classList.remove('active');
+        document.getElementById('details').classList.add('active');
+        speak(pkg.title);
+    }
 
-        function startModule(key) {
-            const module = globalContent[key];
-            document.getElementById('ai-text').innerHTML = `🤖 <strong>توجيه المدرب:</strong> ${module.ai}`;
-            document.getElementById('course-content').innerHTML = `
-                <h1 style="color:var(--primary-dark); font-size: 2.5rem;">${module.title}</h1>
-                <div style="line-height: 1.8; font-size: 1.2rem;">${module.details}</div>
-                <button class="btn-action" style="margin-top:30px;" onclick="speak('${module.ai}')">تشغيل المحاضرة الصوتية 🔊</button>
-            `;
-            go('training');
-            speak(module.ai);
-        }
+    function goBack() {
+        document.getElementById('details').classList.remove('active');
+        document.getElementById('catalog').classList.add('active');
+    }
 
-        function speak(text) {
-            window.speechSynthesis.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'ar-SA';
-            utter.rate = 0.85;
-            utter.pitch = 0.95;
-            window.speechSynthesis.speak(utter);
-        }
-    </script>
+    function speak(text) {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'ar-SA';
+        utter.rate = 0.9;
+        window.speechSynthesis.speak(utter);
+    }
+</script>
+
 </body>
 </html>
